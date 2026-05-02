@@ -31,8 +31,13 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
+  <script src="/live2d/libs/pixi.min.js"></script>
+  <script src="/live2d/libs/live2dcubismcore.min.js"></script>
+  <script src="/live2d/libs/pixi-live2d-display.js"></script>
+  <style>
+    #live2dCanvas { position:fixed; bottom:0; right:0; z-index:9999; pointer-events:none; width:380px; height:380px; }
+  </style>
 <meta name="generator" content="Hexo 8.1.1"></head>
-
 <body>
   <div id="container">
     <div id="wrap">
@@ -163,6 +168,7 @@
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
+    <canvas id="live2dCanvas"></canvas>
     
 
 
@@ -181,6 +187,138 @@
 
 
 
+
+<script>
+(function() {
+    var canvas = document.getElementById('live2dCanvas');
+    var app, model, coreModel;
+    var W = 380, H = 380;
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    var mouse = { x:0.5, y:0.5 };
+    var sm = { x:0.5, y:0.5 };
+
+    var blink = {
+        v: 1, timer: 0, next: 3, phase: 'open', elapsed: 0,
+        count: 0, target: 1
+    };
+
+    function schedBlink() {
+        blink.next = 2 + Math.random() * 5;
+        blink.timer = 0;
+        blink.target = Math.random() < 0.15 ? 2 : 1;
+        blink.count = 0;
+    }
+
+    function startBlink() {
+        blink.phase = 'closing';
+        blink.elapsed = 0;
+        blink.count++;
+    }
+
+    function updateBlink(dt) {
+        blink.timer += dt;
+        if (blink.phase === 'open' && blink.timer >= blink.next) {
+            startBlink();
+            return;
+        }
+        var ct = 0.06, ht = 0.05, ot = 0.12;
+        switch (blink.phase) {
+            case 'closing':
+                blink.elapsed += dt;
+                blink.v = 1 - blink.elapsed / ct;
+                if (blink.elapsed >= ct) { blink.v = 0; blink.phase = 'closed'; blink.elapsed = 0; }
+                break;
+            case 'closed':
+                blink.elapsed += dt;
+                if (blink.elapsed >= ht) { blink.phase = 'opening'; blink.elapsed = 0; }
+                break;
+            case 'opening':
+                blink.elapsed += dt;
+                blink.v = blink.elapsed / ot;
+                if (blink.elapsed >= ot) {
+                    blink.v = 1; blink.phase = 'open'; blink.elapsed = 0;
+                    if (blink.count < blink.target) { setTimeout(startBlink, 180); }
+                    else { schedBlink(); }
+                }
+                break;
+        }
+    }
+
+    function updateTracking(dt) {
+        sm.x = lerp(sm.x, mouse.x, dt * 8);
+        sm.y = lerp(sm.y, mouse.y, dt * 8);
+    }
+
+    function applyParams() {
+        if (!coreModel) return;
+        coreModel.setParameterValueById('ParamEyeLOpen', blink.v);
+        coreModel.setParameterValueById('ParamEyeROpen', blink.v);
+        var ex = clamp((sm.x - 0.5) * 2.2, -0.85, 0.85);
+        var ey = clamp((sm.y - 0.5) * 2.2, -0.70, 0.70);
+        coreModel.setParameterValueById('ParamEyeBallX', ex);
+        coreModel.setParameterValueById('ParamEyeBallY', ey);
+    }
+
+    function positionModel() {
+        if (!model) return;
+        model.scale.set(0.08);
+        model.x = W * 0.48;
+        model.y = H * 0.50;
+        model.anchor.set(0.5, 0.5);
+    }
+
+    async function loadModel(url) {
+        model = await PIXI.live2d.Live2DModel.from(url, { autoInteract: false });
+        coreModel = model.internalModel.coreModel;
+        app.stage.addChild(model);
+        positionModel();
+        console.log('Live2D ready!');
+    }
+
+    async function start() {
+        PIXI.live2d.Live2DModel.registerTicker(PIXI.Ticker);
+
+        var urls = ['/live2d/models/enterprise/aierdeliqi_5.model3.json'];
+        for (var i = 0; i < urls.length; i++) {
+            try { await loadModel(urls[i]); return; }
+            catch(e) { console.warn('Failed: ' + urls[i], e); }
+        }
+    }
+
+    app = new PIXI.Application({
+        view: canvas,
+        backgroundAlpha: 0,
+        antialias: true,
+        width: W, height: H,
+        resolution: 2,
+        autoDensity: true,
+    });
+
+    window.PIXI = PIXI;
+
+    window.addEventListener('mousemove', function(e) {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+    });
+
+    window.PIXI = PIXI;
+
+    schedBlink();
+    start();
+
+    app.ticker.add(function(delta) {
+        var dt = app.ticker.deltaMS / 1000;
+        updateBlink(dt);
+        updateTracking(dt);
+        applyParams();
+    });
+
+    window.PIXI = PIXI;
+})();
+</script>
 
   </div>
 </body>

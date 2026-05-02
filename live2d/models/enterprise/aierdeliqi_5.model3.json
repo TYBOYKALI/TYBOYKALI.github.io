@@ -1,0 +1,1 @@
+{"Version":3,"ScaleFactor":0.15,"FileReferences":{"Moc":"aierdeliqi_5.moc3","Textures":["textures/texture_00.png","textures/texture_01.png"],"Physics":"aierdeliqi_5.physics3.json"},"Groups":[{"Target":"Parameter","Name":"LipSync","Ids":["ParamMouthOpenY"]},{"Target":"Parameter","Name":"EyeBlink","Ids":["ParamEyeLOpen","ParamEyeROpen"]}],"AnisoLevel":4}
