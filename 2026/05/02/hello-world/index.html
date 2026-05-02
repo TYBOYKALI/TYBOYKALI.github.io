@@ -1,6 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><!-- hexo injector head_begin start -->
+<script>
+(function() {
+  var html = document.documentElement;
+  var granted = false;
+
+  html.setAttribute('lang', 'zh-CN');
+
+  function showPaused() {
+    granted = false;
+    document.title = 'SYSTEM_PAUSED_';
+  }
+
+  function showGranted() {
+    if (granted) return;
+    granted = true;
+
+    var chars = 'ACCESS_GRANTED_';
+    var i = 0;
+    function type() {
+      if (i > chars.length) return;
+
+      var current = chars.slice(0, i);
+
+      document.title = current + '▮';
+
+      setTimeout(function() {
+        document.title = current;
+
+        setTimeout(function() {
+          i++;
+          type();
+        }, 60);
+      }, 150);
+    }
+    type();
+
+    html.classList.add('access-granted');
+
+    console.log('%c ACCESS_GRANTED_ %c欢迎回来。',
+      'background:#0f0;color:#000;padding:2px 6px;',
+      'color:#0f0;');
+  }
+
+  showPaused();
+
+  var events = ['mousemove', 'click', 'keydown', 'scroll', 'touchstart'];
+  for (var i = 0; i < events.length; i++) {
+    window.addEventListener(events[i], showGranted, { once: true });
+  }
+
+  window.addEventListener('blur', showPaused);
+  window.addEventListener('focus', showGranted);
+})();
+</script>
+<!-- hexo injector head_begin end -->
   <meta charset="utf-8">
   
   
@@ -117,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuidUSErX1Aec-F93r5eTvhNj" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuid7OXzYjCYrFswgx_7kEs57" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
