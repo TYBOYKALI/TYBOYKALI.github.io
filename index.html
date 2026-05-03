@@ -5,37 +5,50 @@
 (function() {
   var html = document.documentElement;
   var granted = false;
+  var typeTimer = null;
 
   html.setAttribute('lang', 'zh-CN');
 
+  function cancelTyping() {
+    if (typeTimer) {
+      clearTimeout(typeTimer);
+      typeTimer = null;
+    }
+  }
+
   function showPaused() {
     granted = false;
+    cancelTyping();
     document.title = 'SYSTEM_PAUSED_';
   }
 
   function showGranted() {
     if (granted) return;
     granted = true;
+    cancelTyping();
 
     var chars = 'ACCESS_GRANTED_';
     var i = 0;
-    function type() {
+    function step() {
+      if (!granted) return;
       if (i > chars.length) return;
 
       var current = chars.slice(0, i);
 
       document.title = current + '▮';
 
-      setTimeout(function() {
+      typeTimer = setTimeout(function() {
+        if (!granted) return;
+
         document.title = current;
 
-        setTimeout(function() {
+        typeTimer = setTimeout(function() {
           i++;
-          type();
+          step();
         }, 60);
       }, 150);
     }
-    type();
+    step();
 
     html.classList.add('access-granted');
 
@@ -165,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuid3pZRnHxj2dOOIS1kJ_mdp" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuidwlvQIBtKYoMJjnIjBs5xr" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
