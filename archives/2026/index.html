@@ -542,7 +542,7 @@
   <div class="player-divider"></div>
   <div class="player-volume-wrap">
     <span style="color:#999;font-size:10px;">🔊</span>
-    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="60">
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2">
   </div>
   <button class="player-btn" id="btn-playlist" title="播放列表">☰</button>
 </div>
@@ -574,7 +574,7 @@
   var elPlaylist = document.getElementById('player-playlist');
   var elBtnPlaylist = document.getElementById('btn-playlist');
 
-  audio.volume = 0.6;
+  audio.volume = 0.02;
 
   function fmtTime(s) {
     if (!s || isNaN(s)) return '00:00';
