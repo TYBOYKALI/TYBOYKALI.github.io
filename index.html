@@ -986,7 +986,7 @@
 <h3 id="xss修改密码"><a href="#xss修改密码" class="headerlink" title="xss修改密码"></a>xss修改密码</h3><p>管理员浏览器会缓存cooike，所以当使用xss操控管理员浏览器的时候可以不用cooike指令</p>
 <p><img src="/images/image-20260418105318366.png" alt="image-20260418105318366"></p>
 <p>创建123用户登陆后可以看到一个留言板</p>
-<p>使用<img src=x onerror=alert(1)>提交发现存在图片标识，存在xss漏洞</p>
+<p>使用 <code>&amp;lt;img src=x onerror=alert(1)&amp;gt;</code> 提交发现存在图片标识，存在xss漏洞</p>
 <p>虽然不能直接通过获取管理员页面源码来获取管理员密码，但是修改密码页面存在一个ctf_token作为修改密码验证直接出现在源码上</p>
 <p>通过xss模块，我们可以获取token,再利用缓存cooike我们可以解决session然后修改密码</p>
 <p>playload</p>
@@ -1001,7 +1001,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/05/03/newibe-lazy-newbie/" data-id="cuidK4ULg0i2EV1GE_SQxNCZ1" data-title="newibe懒菜鸟" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/05/03/newibe-lazy-newbie/" data-id="cuidKefSJUfce4inumsrICZQI" data-title="newibe懒菜鸟" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -1052,7 +1052,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuid5NviImeT23cKEZa2K_KR_" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuidsA1IsE-BJ1fFB5IKiGJyb" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
