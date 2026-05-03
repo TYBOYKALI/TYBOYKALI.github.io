@@ -107,20 +107,22 @@
   bottom: 16px;
   left: 16px;
   z-index: 9998;
-  background: rgba(20, 20, 30, 0.92);
+  background: rgba(20, 20, 30, 0.9);
   backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 10px 14px;
+  border-radius: 14px;
+  padding: 10px 8px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   border: 1px solid rgba(255,255,255,0.08);
-  transition: opacity 0.3s;
-  max-width: 480px;
+  width: 52px;
+  transition: width 0.25s;
+  overflow: hidden;
 }
-#music-player.minimized .player-expand {
-  display: none;
+#music-player:hover {
+  width: 150px;
 }
 .player-btn {
   width: 34px; height: 34px;
@@ -137,26 +139,50 @@
   justify-content: center;
 }
 .player-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
-.player-btn.play-btn { width: 40px; height: 40px; font-size: 16px; background: rgba(100,180,255,0.2); color: #8cf; }
-.player-btn.play-btn:hover { background: rgba(100,180,255,0.35); }
-.player-info {
-  display: flex; flex-direction: column;
-  min-width: 0; flex: 1;
+.player-btn.play-btn {
+  width: 38px; height: 38px;
+  font-size: 16px;
+  background: rgba(100,180,255,0.2);
+  color: #8cf;
 }
+.player-btn.play-btn:hover { background: rgba(100,180,255,0.35); }
+.player-row {
+  display: flex; gap: 4px;
+}
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#music-player:hover .player-info { opacity: 1; }
 .player-title {
-  font-size: 12px; color: #ddd;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  max-width: 260px;
+  font-size: 11px; color: #ddd;
+  white-space: nowrap;
+  max-width: 130px;
+  overflow: hidden; text-overflow: ellipsis;
+  text-align: center;
 }
 .player-time {
   font-size: 10px; color: #888;
+  margin-top: 2px;
 }
 .player-volume-wrap {
-  display: flex; align-items: center; gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
+#music-player:hover .player-volume-wrap { opacity: 1; }
 .player-volume {
-  width: 60px; height: 4px;
+  width: 80px; height: 4px;
   -webkit-appearance: none;
+  appearance: none;
   background: rgba(255,255,255,0.15);
   border-radius: 2px;
   outline: none;
@@ -169,10 +195,22 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.player-divider {
+  width: 28px; height: 1px;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#music-player:hover .player-divider { opacity: 1; }
+#btn-playlist {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#music-player:hover #btn-playlist { opacity: 1; }
 #player-playlist {
   position: fixed;
-  bottom: 72px;
-  left: 16px;
+  bottom: 16px;
+  left: 76px;
   z-index: 9997;
   background: rgba(20, 20, 30, 0.94);
   backdrop-filter: blur(12px);
@@ -180,15 +218,15 @@
   padding: 6px 0;
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   border: 1px solid rgba(255,255,255,0.08);
-  max-height: 320px;
+  max-height: 340px;
   overflow-y: auto;
-  min-width: 240px;
+  min-width: 200px;
   display: none;
 }
 #player-playlist.show { display: block; }
 #player-playlist .pl-item {
-  padding: 9px 16px;
-  font-size: 13px;
+  padding: 8px 14px;
+  font-size: 12px;
   color: #bbb;
   cursor: pointer;
   white-space: nowrap;
@@ -199,10 +237,12 @@
 #player-playlist .pl-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
 #player-playlist .pl-item.active { color: #8cf; background: rgba(100,180,255,0.12); }
 @media (max-width: 600px) {
-  #music-player { left: 8px; bottom: 8px; padding: 8px 10px; gap: 6px; border-radius: 10px; }
-  .player-title { max-width: 120px; }
-  .player-volume-wrap { display: none; }
-  #player-playlist { left: 8px; bottom: 60px; }
+  #music-player { left: 6px; bottom: 8px; padding: 8px 6px; gap: 5px; border-radius: 12px; width: 44px; }
+  #music-player:hover { width: 130px; }
+  .player-btn { width: 30px; height: 30px; font-size: 12px; }
+  .player-btn.play-btn { width: 34px; height: 34px; font-size: 14px; }
+  .player-title { max-width: 110px; font-size: 10px; }
+  #player-playlist { left: 58px; bottom: 8px; min-width: 160px; }
 }
 </style>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
@@ -494,15 +534,17 @@
   <button class="player-btn" id="btn-prev" title="上一首">⏮</button>
   <button class="player-btn play-btn" id="btn-play" title="播放/暂停">▶</button>
   <button class="player-btn" id="btn-next" title="下一首">⏭</button>
-  <div class="player-info player-expand">
-    <span class="player-title" id="player-title">未选择歌曲</span>
-    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  <div class="player-divider"></div>
+  <div class="player-info">
+    <span class="player-title" id="player-title">未选择</span>
+    <span class="player-time" id="player-time">00:00</span>
   </div>
-  <div class="player-volume-wrap player-expand">
-    <span style="color:#888;font-size:11px;">🔊</span>
+  <div class="player-divider"></div>
+  <div class="player-volume-wrap">
+    <span style="color:#999;font-size:10px;">🔊</span>
     <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="60">
   </div>
-  <button class="player-btn player-expand" id="btn-playlist" title="播放列表">☰</button>
+  <button class="player-btn" id="btn-playlist" title="播放列表">☰</button>
 </div>
 <div id="player-playlist"></div>
 
@@ -514,7 +556,6 @@
     { name: '可爱', file: '/music/可爱.mp3' },
     { name: '打上火花', file: '/music/打上火花.mp3' },
     { name: '谢谢', file: '/music/谢谢.mp3' },
-    { name: 'Summertime', file: '/music/cinnamons _ evening cinema - summertime (夏日时光).mp3' },
     { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
     { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
     { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
@@ -532,11 +573,11 @@
   var elVolume = document.getElementById('player-volume');
   var elPlaylist = document.getElementById('player-playlist');
   var elBtnPlaylist = document.getElementById('btn-playlist');
-  var elPlayer = document.getElementById('music-player');
 
   audio.volume = 0.6;
 
   function fmtTime(s) {
+    if (!s || isNaN(s)) return '00:00';
     var m = Math.floor(s / 60);
     var sec = Math.floor(s % 60);
     return m + ':' + (sec < 10 ? '0' : '') + sec;
@@ -610,12 +651,7 @@
   });
 
   audio.addEventListener('ended', function() {
-    var old = current;
-    current = (current + 1) % songs.length;
-    load(current);
-    if (current !== old || current === 0) {
-      audio.currentTime = 0;
-    }
+    load((current + 1) % songs.length);
   });
 
   audio.addEventListener('loadedmetadata', function() {
