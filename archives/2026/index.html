@@ -44,12 +44,7 @@
       'color:#0f0;');
   }
 
-  showPaused();
-
-  var events = ['mousemove', 'click', 'keydown', 'scroll', 'touchstart'];
-  for (var i = 0; i < events.length; i++) {
-    window.addEventListener(events[i], showGranted, { once: true });
-  }
+  showGranted();
 
   window.addEventListener('blur', showPaused);
   window.addEventListener('focus', showGranted);
