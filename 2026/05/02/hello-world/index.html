@@ -104,7 +104,112 @@
   <style>
     #live2dCanvas { position:fixed; bottom:0; right:0; z-index:9999; pointer-events:none; width:390px; height:380px; }
   </style>
-<meta name="generator" content="Hexo 8.1.1"></head>
+<!-- hexo injector head_end start -->
+<style>
+#music-player {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 9998;
+  background: rgba(20, 20, 30, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: opacity 0.3s;
+  max-width: 480px;
+}
+#music-player.minimized .player-expand {
+  display: none;
+}
+.player-btn {
+  width: 34px; height: 34px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
+.player-btn.play-btn { width: 40px; height: 40px; font-size: 16px; background: rgba(100,180,255,0.2); color: #8cf; }
+.player-btn.play-btn:hover { background: rgba(100,180,255,0.35); }
+.player-info {
+  display: flex; flex-direction: column;
+  min-width: 0; flex: 1;
+}
+.player-title {
+  font-size: 12px; color: #ddd;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 260px;
+}
+.player-time {
+  font-size: 10px; color: #888;
+}
+.player-volume-wrap {
+  display: flex; align-items: center; gap: 4px;
+}
+.player-volume {
+  width: 60px; height: 4px;
+  -webkit-appearance: none;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.player-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  background: #8cf;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#player-playlist {
+  position: fixed;
+  bottom: 72px;
+  left: 16px;
+  z-index: 9997;
+  background: rgba(20, 20, 30, 0.94);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 6px 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  max-height: 320px;
+  overflow-y: auto;
+  min-width: 240px;
+  display: none;
+}
+#player-playlist.show { display: block; }
+#player-playlist .pl-item {
+  padding: 9px 16px;
+  font-size: 13px;
+  color: #bbb;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s;
+}
+#player-playlist .pl-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+#player-playlist .pl-item.active { color: #8cf; background: rgba(100,180,255,0.12); }
+@media (max-width: 600px) {
+  #music-player { left: 8px; bottom: 8px; padding: 8px 10px; gap: 6px; border-radius: 10px; }
+  .player-title { max-width: 120px; }
+  .player-volume-wrap { display: none; }
+  #player-playlist { left: 8px; bottom: 60px; }
+}
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -180,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuidwlvQIBtKYoMJjnIjBs5xr" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/05/02/hello-world/" data-id="cuidjgQIwkpEwQiAhlDYSQ-Oh" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -404,5 +509,141 @@
 </script>
 
   </div>
-</body>
+<!-- hexo injector body_end start -->
+<div id="music-player">
+  <button class="player-btn" id="btn-prev" title="上一首">⏮</button>
+  <button class="player-btn play-btn" id="btn-play" title="播放/暂停">▶</button>
+  <button class="player-btn" id="btn-next" title="下一首">⏭</button>
+  <div class="player-info player-expand">
+    <span class="player-title" id="player-title">未选择歌曲</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap player-expand">
+    <span style="color:#888;font-size:11px;">🔊</span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="60">
+  </div>
+  <button class="player-btn player-expand" id="btn-playlist" title="播放列表">☰</button>
+</div>
+<div id="player-playlist"></div>
+
+<script>
+(function() {
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'Summertime', file: '/music/cinnamons _ evening cinema - summertime (夏日时光).mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' }
+  ];
+
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
+  var elPlayer = document.getElementById('music-player');
+
+  audio.volume = 0.6;
+
+  function fmtTime(s) {
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function load(i) {
+    current = i;
+    audio.src = songs[i].file;
+    elTitle.textContent = songs[i].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function(){});
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) { load(0); }
+    if (audio.paused) {
+      audio.play().catch(function(){});
+      playing = true;
+      elPlay.textContent = '⏸';
+    } else {
+      audio.pause();
+      playing = false;
+      elPlay.textContent = '▶';
+    }
+  }
+
+  function next() { load((current + 1) % songs.length); }
+  function prev() { load((current - 1 + songs.length) % songs.length); }
+
+  function renderPlaylist() {
+    var html = '';
+    for (var i = 0; i < songs.length; i++) {
+      html += '<div class="pl-item' + (i === current ? ' active' : '') + '" data-idx="' + i + '">' + songs[i].name + '</div>';
+    }
+    elPlaylist.innerHTML = html;
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', prev);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
+  });
+
+  elBtnPlaylist.addEventListener('click', function(e) {
+    e.stopPropagation();
+    elPlaylist.classList.toggle('show');
+  });
+
+  elPlaylist.addEventListener('click', function(e) {
+    var item = e.target.closest('.pl-item');
+    if (!item) return;
+    var idx = parseInt(item.getAttribute('data-idx'));
+    if (idx !== current) {
+      load(idx);
+      if (!playing) togglePlay();
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!elPlaylist.contains(e.target) && e.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+
+  audio.addEventListener('ended', function() {
+    var old = current;
+    current = (current + 1) % songs.length;
+    load(current);
+    if (current !== old || current === 0) {
+      audio.currentTime = 0;
+    }
+  });
+
+  audio.addEventListener('loadedmetadata', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+
+  renderPlaylist();
+})();
+</script>
+<!-- hexo injector body_end end --></body>
 </html>
