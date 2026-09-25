@@ -11,11 +11,11 @@
   <meta charset="utf-8">
   
   
-  <title>easycms | TYBOYKALI&#39;s Blog</title>
+  <title>newone | TYBOYKALI&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="easycms题目提示存在&#x2F;flag.php,内容 123456if($_SERVER[&quot;REMOTE_ADDR&quot;] !&#x3D; &quot;127.0.0.1&quot;)&#123;   echo &quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;;   return;&#125;else&#123;   syst">
 <meta property="og:type" content="article">
-<meta property="og:title" content="easycms">
+<meta property="og:title" content="newone">
 <meta property="og:url" content="https://tyboykali.github.io/2026/09/25/newone/index.html">
 <meta property="og:site_name" content="TYBOYKALI&#39;s Blog">
 <meta property="og:description" content="easycms题目提示存在&#x2F;flag.php,内容 123456if($_SERVER[&quot;REMOTE_ADDR&quot;] !&#x3D; &quot;127.0.0.1&quot;)&#123;   echo &quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;;   return;&#125;else&#123;   syst">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915204959751.png">
 <meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915205116440.png">
 <meta property="article:published_time" content="2026-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-25T07:38:58.280Z">
+<meta property="article:modified_time" content="2026-09-25T07:48:07.146Z">
 <meta property="article:author" content="TYBOYKALI">
 <meta property="article:tag" content="CTF, Web Security, Security Research, Notes">
 <meta name="twitter:card" content="summary">
@@ -1419,7 +1419,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      easycms
+      newone
     </h1>
   
 
@@ -1543,7 +1543,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/09/25/newone/" data-id="cuid7eALrI3kOpLowIhpeqSpe" data-title="easycms" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/09/25/newone/" data-id="cuid7eALrI3kOpLowIhpeqSpe" data-title="newone" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -1576,7 +1576,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
       <ul>
         
           <li>
-            <a href="/2026/09/25/newone/">easycms</a>
+            <a href="/2026/09/25/newone/">newone</a>
           </li>
         
           <li>
@@ -1792,6 +1792,22 @@ body:has(#container.mobile-nav-on) #player-playlist {
 <!-- hexo injector body_end start -->
 <script>
 (function() {
+  var articleTitle = document.querySelector('.article-title');
+  var firstHeading = document.querySelector('.article-entry > h1:first-child');
+  if (!articleTitle || !firstHeading) return;
+
+  var normalize = function(value) {
+    return value.replace(/\s+/g, '').toLowerCase();
+  };
+
+  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
+    firstHeading.hidden = true;
+  }
+})();
+</script>
+
+<script>
+(function() {
   document.querySelectorAll('figure.highlight').forEach(function(block) {
     var codeNode = block.querySelector('.code pre');
     if (!codeNode) return;
@@ -1878,6 +1894,137 @@ figure.highlight:hover .code-copy-btn,
   color: var(--gk-green);
 }
 </style>
+
+<div id="music-player" role="region" aria-label="音乐播放器">
+  <div class="player-row">
+    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
+    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
+    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
+  </div>
+  <div class="player-info" aria-live="polite">
+    <span class="player-title" id="player-title">NO TRACK</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap">
+    <span class="fa fa-volume-up" aria-hidden="true"></span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
+  </div>
+  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
+</div>
+<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
+
+<script>
+(function() {
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
+    { name: '鲜花', file: '/music/鲜花.mp4' }
+  ];
+
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
+
+  audio.volume = 0.02;
+
+  function fmtTime(value) {
+    if (!value || isNaN(value)) return '00:00';
+    var minutes = Math.floor(value / 60);
+    var seconds = Math.floor(value % 60);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function setPlayState(isPlaying) {
+    playing = isPlaying;
+    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
+    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
+    elPlay.setAttribute('title', playing ? '暂停' : '播放');
+    elPlay.setAttribute('aria-pressed', String(playing));
+  }
+
+  function load(index) {
+    current = index;
+    audio.src = songs[index].file;
+    elTitle.textContent = songs[index].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function() { setPlayState(false); });
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) load(0);
+    if (audio.paused) {
+      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+    } else {
+      audio.pause();
+      setPlayState(false);
+    }
+  }
+
+  function next() { load((current + 1) % songs.length); }
+  function previous() { load((current - 1 + songs.length) % songs.length); }
+
+  function renderPlaylist() {
+    elPlaylist.innerHTML = songs.map(function(song, index) {
+      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
+    }).join('');
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', previous);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
+  });
+
+  elBtnPlaylist.addEventListener('click', function(event) {
+    event.stopPropagation();
+    var expanded = !elPlaylist.classList.contains('show');
+    elPlaylist.classList.toggle('show', expanded);
+    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
+  });
+
+  elPlaylist.addEventListener('click', function(event) {
+    var item = event.target.closest('.pl-item');
+    if (!item) return;
+    load(parseInt(item.getAttribute('data-idx'), 10));
+    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+      elBtnPlaylist.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('pause', function() { setPlayState(false); });
+  audio.addEventListener('play', function() { setPlayState(true); });
+  audio.addEventListener('error', function() { setPlayState(false); });
+
+  renderPlaylist();
+})();
+</script>
 
 <script>
 (function() {
@@ -2068,152 +2215,5 @@ figure.highlight:hover .code-copy-btn,
   }
 }
 </style>
-
-<script>
-(function() {
-  var articleTitle = document.querySelector('.article-title');
-  var firstHeading = document.querySelector('.article-entry > h1:first-child');
-  if (!articleTitle || !firstHeading) return;
-
-  var normalize = function(value) {
-    return value.replace(/\s+/g, '').toLowerCase();
-  };
-
-  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
-    firstHeading.hidden = true;
-  }
-})();
-</script>
-
-<div id="music-player" role="region" aria-label="音乐播放器">
-  <div class="player-row">
-    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
-    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
-    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
-  </div>
-  <div class="player-info" aria-live="polite">
-    <span class="player-title" id="player-title">NO TRACK</span>
-    <span class="player-time" id="player-time">00:00 / 00:00</span>
-  </div>
-  <div class="player-volume-wrap">
-    <span class="fa fa-volume-up" aria-hidden="true"></span>
-    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
-  </div>
-  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
-</div>
-<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
-
-<script>
-(function() {
-  var songs = [
-    { name: 'gta4', file: '/music/gta4.mp3' },
-    { name: 'try', file: '/music/try.mp3' },
-    { name: '可爱', file: '/music/可爱.mp3' },
-    { name: '打上火花', file: '/music/打上火花.mp3' },
-    { name: '谢谢', file: '/music/谢谢.mp3' },
-    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
-    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
-    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
-    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
-    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
-    { name: '鲜花', file: '/music/鲜花.mp4' }
-  ];
-
-  var audio = new Audio();
-  var current = 0;
-  var playing = false;
-  var elPlay = document.getElementById('btn-play');
-  var elTitle = document.getElementById('player-title');
-  var elTime = document.getElementById('player-time');
-  var elVolume = document.getElementById('player-volume');
-  var elPlaylist = document.getElementById('player-playlist');
-  var elBtnPlaylist = document.getElementById('btn-playlist');
-
-  audio.volume = 0.02;
-
-  function fmtTime(value) {
-    if (!value || isNaN(value)) return '00:00';
-    var minutes = Math.floor(value / 60);
-    var seconds = Math.floor(value % 60);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  }
-
-  function setPlayState(isPlaying) {
-    playing = isPlaying;
-    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
-    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
-    elPlay.setAttribute('title', playing ? '暂停' : '播放');
-    elPlay.setAttribute('aria-pressed', String(playing));
-  }
-
-  function load(index) {
-    current = index;
-    audio.src = songs[index].file;
-    elTitle.textContent = songs[index].name;
-    renderPlaylist();
-    if (playing) {
-      audio.play().catch(function() { setPlayState(false); });
-    }
-  }
-
-  function togglePlay() {
-    if (!audio.src) load(0);
-    if (audio.paused) {
-      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-    } else {
-      audio.pause();
-      setPlayState(false);
-    }
-  }
-
-  function next() { load((current + 1) % songs.length); }
-  function previous() { load((current - 1 + songs.length) % songs.length); }
-
-  function renderPlaylist() {
-    elPlaylist.innerHTML = songs.map(function(song, index) {
-      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
-    }).join('');
-  }
-
-  elPlay.addEventListener('click', togglePlay);
-  document.getElementById('btn-prev').addEventListener('click', previous);
-  document.getElementById('btn-next').addEventListener('click', next);
-
-  elVolume.addEventListener('input', function() {
-    audio.volume = this.value / 100;
-  });
-
-  elBtnPlaylist.addEventListener('click', function(event) {
-    event.stopPropagation();
-    var expanded = !elPlaylist.classList.contains('show');
-    elPlaylist.classList.toggle('show', expanded);
-    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
-  });
-
-  elPlaylist.addEventListener('click', function(event) {
-    var item = event.target.closest('.pl-item');
-    if (!item) return;
-    load(parseInt(item.getAttribute('data-idx'), 10));
-    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
-      elPlaylist.classList.remove('show');
-      elBtnPlaylist.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  audio.addEventListener('timeupdate', function() {
-    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
-  });
-  audio.addEventListener('ended', function() { next(); });
-  audio.addEventListener('pause', function() { setPlayState(false); });
-  audio.addEventListener('play', function() { setPlayState(true); });
-  audio.addEventListener('error', function() { setPlayState(false); });
-
-  renderPlaylist();
-})();
-</script>
 <!-- hexo injector body_end end --></body>
 </html>
