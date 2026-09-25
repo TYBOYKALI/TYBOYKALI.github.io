@@ -1710,95 +1710,6 @@ body:has(#container.mobile-nav-on) #player-playlist {
 })();
 </script>
 
-<script>
-(function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
-
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
-
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
-    }
-
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
-    }
-
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
-
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
-  });
-})();
-</script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
-}
-</style>
-
 <div id="music-player" role="region" aria-label="音乐播放器">
   <div class="player-row">
     <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
@@ -2117,6 +2028,95 @@ figure.highlight:hover .code-copy-btn,
   .article-toc-sidebar {
     display: none;
   }
+}
+</style>
+
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
 }
 </style>
 <!-- hexo injector body_end end --></body>

