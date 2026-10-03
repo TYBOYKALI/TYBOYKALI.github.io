@@ -27,6 +27,8 @@
 <meta name="twitter:card" content="summary">
   
   
+    <link rel="shortcut icon" href="/favicon.svg">
+  
   
   
 <link rel="stylesheet" href="/css/style.css">
@@ -37,14 +39,8 @@
 
   
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<link rel="stylesheet" href="/vendor/fork-awesome/css/fork-awesome.min.css">
 
-  <script src="/live2d/libs/pixi.min.js"></script>
-  <script src="/live2d/libs/live2dcubismcore.min.js"></script>
-  <script src="/live2d/libs/pixi-live2d-display.js"></script>
-  <style>
-    #live2dCanvas { position:fixed; bottom:0; right:0; z-index:9999; pointer-events:none; width:390px; height:380px; }
-  </style>
 <!-- hexo injector head_end start -->
 <style id="geek-style">
 :root {
@@ -958,14 +954,7 @@ input:focus-visible {
   font-size: 12px !important;
 }
 
-#live2dCanvas {
-  right: 12px !important;
-  z-index: 20 !important;
-  width: 240px !important;
-  height: 234px !important;
-  opacity: 0.86;
-  filter: saturate(0.82) contrast(0.96);
-}
+
 
 /* Footer */
 #footer {
@@ -999,10 +988,7 @@ input:focus-visible {
     width: 250px;
   }
 
-  #live2dCanvas {
-    width: 205px !important;
-    height: 200px !important;
-  }
+  
 }
 
 @media (max-width: 820px) {
@@ -1035,9 +1021,7 @@ input:focus-visible {
     margin-top: 42px;
   }
 
-  #live2dCanvas {
-    display: none !important;
-  }
+  
 }
 
 @media (max-width: 600px) {
@@ -1163,6 +1147,165 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+/* A quieter blue-and-gold palette, with clearer reading hierarchy. */
+:root {
+  --gk-bg: #10141c;
+  --gk-surface: #171d28;
+  --gk-surface-raised: #1e2735;
+  --gk-border: #2b3545;
+  --gk-border-strong: #44526a;
+  --gk-text: #d5ddeb;
+  --gk-text-strong: #f0f3fa;
+  --gk-muted: #a0adc2;
+  --gk-green: #a9c7f0;
+  --gk-cyan: #a9c7f0;
+  --gk-amber: #dec098;
+}
+body {font-family: var(--gk-reading) !important;}
+#wrap {position: relative; height: auto; min-height: 100%;}
+#main, #sidebar {margin-left: 0; margin-right: 0; float: none !important; width: 100% !important;}
+#wrap > .outer::before, #wrap > .outer::after {display: none;}
+#wrap > .outer {display: grid; grid-template-columns: minmax(0,1fr) 276px; gap: 32px;}
+.outer {max-width: 1180px;}
+#header {height: 96px !important; border-top: 0; background: #121823 !important;}
+#header::after {display: none;}
+#header-title {top: 27px !important; margin: 0 !important; text-align: left; left: 20px;}
+#logo {font-size: 22px !important; font-weight: 650 !important;}
+#logo::before {content: '✦'; color: var(--gk-amber); font-size: 18px;}
+.logo-suffix {font-size: 17px; font-weight: 400; color: var(--gk-muted);}
+#subtitle-wrap {margin-top: 6px !important;}
+#subtitle {font-size: 9px !important; letter-spacing: 1.3px !important;}
+#header-inner {position: absolute; right: 20px; top: 21px; display: flex; align-items: center;}
+#main-nav, #sub-nav {float: none; display: flex; align-items: center; margin: 0;}
+.main-nav-link {margin: 0 5px; padding: 15px 12px !important; height: 48px; border-radius: 6px; font-family: var(--gk-reading);}
+.main-nav-link::before {display: none;}
+.main-nav-link[aria-current='page'] {color: var(--gk-text-strong) !important; background: #202938;}
+.nav-icon {display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 10px !important; border: 0; border-radius: 6px; background: transparent;}
+.nav-icon:hover {background: var(--gk-surface-raised);}
+.nav-icon svg {width: 19px; height: 19px; flex-shrink: 0;}
+#sub-nav {gap: 4px; margin-left: 15px; padding-left: 15px; border-left: 1px solid var(--gk-border);}
+#search-form-wrap {top: 5px;}
+#wrap > .outer {padding-top: 38px;}
+#main {min-width: 0;}
+.home-dashboard {position: relative; border-radius: 14px; border-color: #35425a; background: radial-gradient(ellipse at 100% 0, #29374e 0, transparent 64%), var(--gk-surface); margin-bottom: 38px;}
+.home-terminal-bar {height: 36px; background: rgba(12,18,28,.3); border-color: rgba(169,199,240,.12);}
+.terminal-path {color: var(--gk-muted); font-size: 10px;}
+.terminal-dot {width: 6px; height: 6px; opacity: .8;}
+.home-intro {padding: 32px 36px 24px;}
+.home-prompt {color: var(--gk-amber); font-size: 10px; font-family: var(--gk-mono); letter-spacing: 1.2px; margin-bottom: 17px;}
+.home-prompt::after {display: none;}
+.home-intro h2 {font-size: 39px; line-height: 1.38; letter-spacing: -.8px;}
+.home-intro h2 span {color: #b9ccec;}
+.home-summary {font-size: 14px; line-height: 1.9; max-width: 490px; margin-top: 18px;}
+.home-actions {display: flex; align-items: center; gap: 22px; margin-top: 24px; font-size: 13px;}
+.home-primary {display: inline-flex; align-items: center; gap: 25px; padding: 10px 16px; border-radius: 6px; background: #c3d7f4; color: #162237; font-weight: 650;}
+.home-primary:hover {background: #e0ebfd; color: #162237;}
+.home-secondary {color: var(--gk-muted);}
+.home-status {margin-top: 26px; padding-top: 16px; font-size: 11px; gap: 12px 25px; font-family: var(--gk-mono); border-color: rgba(169,199,240,.15);}
+.home-status b {color: var(--gk-text-strong);}
+.home-status-topic {margin-left: auto; color: var(--gk-amber); font-size: 10px;}
+.section-heading {margin-bottom: 16px;}
+.section-heading h2 {font-family: var(--gk-reading); font-size: 17px; color: var(--gk-text-strong);}
+.section-heading h2 span {font-family: var(--gk-mono); font-size: 9px; color: var(--gk-muted); margin-left: 9px; font-weight: 400;}
+.section-heading > a {font-size: 12px;}
+#notes-heading {scroll-margin-top: 24px;}
+.notes-list {display: grid; gap: 12px; border: 0;}
+.note-row {border: 1px solid var(--gk-border); background: #151b25; border-radius: 10px; transition: border-color 150ms ease, background 150ms ease;}
+.note-row:hover {border-color: #657b9c; background: #1a2331;}
+.note-link {grid-template-columns: 30px minmax(0,1fr) 22px; align-items: start; gap: 16px; min-height: 120px; padding: 23px 24px;}
+.note-link:hover {background: transparent;}
+.note-index {font-family: var(--gk-mono); font-size: 12px; color: var(--gk-amber); padding-top: 22px;}
+.note-meta {display: flex; align-items: center; gap: 12px; margin-bottom: 8px; color: var(--gk-muted); font-family: var(--gk-mono); font-size: 10px;}
+.note-category {font-size: 10px; border-left: 1px solid var(--gk-border-strong); padding-left: 12px;}
+.note-link h3 {font-size: 19px; font-weight: 650; white-space: normal; overflow-wrap: anywhere; line-height: 1.5; color: var(--gk-text-strong);}
+.note-summary {color: var(--gk-muted); font-size: 13px; line-height: 1.8; margin: 7px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere;}
+.note-arrow {padding-top: 24px; color: var(--gk-muted); font-size: 19px;}
+.about-card {padding: 25px 23px; border: 1px solid var(--gk-border); border-radius: 12px; background: var(--gk-surface); margin-bottom: 28px;}
+.about-mark {color: var(--gk-amber); font-size: 24px; margin-bottom: 12px;}
+.about-card h2 {color: var(--gk-text-strong); font-family: var(--gk-mono); font-size: 16px; margin: 0 0 10px;}
+.about-card p {font-size: 13px; line-height: 1.9; color: var(--gk-muted); margin: 0 0 18px;}
+.about-card a {font-family: var(--gk-mono); font-size: 11px;}
+.widget-title {font-family: var(--gk-reading) !important; font-size: 13px !important; color: var(--gk-text-strong) !important; padding-bottom: 12px !important;}
+.widget-title::before {content: '·'; color: var(--gk-amber);}
+.widget {font-family: var(--gk-reading) !important; font-size: 13px !important;}
+.widget li {padding-top: 8px; padding-bottom: 8px; border-color: var(--gk-border);}
+.article {margin-top: 0 !important; padding: 32px 38px !important; border-radius: 12px !important;}
+.article-title, .article-title a {font-size: 30px !important; line-height: 1.5 !important; overflow-wrap: anywhere;}
+.article-meta {margin-bottom: 14px;}
+.article-entry {overflow-wrap: anywhere; font-size: 16px !important; line-height: 1.95 !important;}
+.article-entry h2, .article-entry h3, .article-entry h4 {scroll-margin-top: 24px;}
+.article-entry blockquote {background: #121a26 !important; border-left-color: var(--gk-amber) !important;}
+.article-entry figure.highlight {border-radius: 8px !important;}
+.post-page #sidebar {position: sticky; top: 24px;}
+#sidebar .article-toc-sidebar, #sidebar .article-toc-sidebar.visible {display: block; position: relative; left: auto; top: auto; width: 100%; margin-bottom: 28px; max-height: none; opacity: 1; transform: none; pointer-events: auto; padding: 18px; border-radius: 10px !important; background: var(--gk-surface) !important;}
+#sidebar .toc-content {max-height: min(45vh, 380px);}
+.post-page #sidebar .widget-wrap {display: none;}
+#footer {background: #121823 !important;}
+#music-player {border-radius: 9px;}
+.freya-companion {position: fixed; right: 16px; bottom: 15px; width: 176px; z-index: 30; text-align: center;}
+.freya-character {display: block; padding: 0; width: 176px; height: 191px; border: 0; background: none; cursor: grab; touch-action: none; user-select: none; border-radius: 12px;}
+.freya-character canvas {display: block; width: 176px; height: 191px;}
+
+
+.freya-hide {position: absolute; right: 0; top: 0; width: 28px; height: 28px; border: 1px solid var(--gk-border); border-radius: 50%; background: var(--gk-surface); color: var(--gk-muted); cursor: pointer; font-size: 17px;}
+.freya-message {position: absolute; right: 5px; bottom: 220px; width: 218px; margin: 0; background: #202b3c; color: var(--gk-text-strong); padding: 13px 16px; border: 1px solid #516783; border-radius: 12px 12px 2px 12px; font-size: 12px; text-align: left; line-height: 1.8; box-shadow: 0 8px 30px #0004;}
+#freya-show {position: fixed; right: 20px; bottom: 20px; z-index: 30; border: 1px solid var(--gk-border-strong); border-radius: 20px; padding: 9px 15px; background: var(--gk-surface); color: var(--gk-amber); cursor: pointer; font-size: 12px;}
+.freya-companion.is-dragging .freya-character {cursor: grabbing;}
+.freya-companion.message-below .freya-message {bottom: auto; top: 205px;}
+.freya-companion.message-align-left .freya-message {right: auto; left: 5px;}
+[hidden] {display: none !important;}
+@media (max-width: 1100px) {
+  #wrap > .outer {grid-template-columns: minmax(0,1fr) 250px;}
+  .home-intro {padding: 28px;}
+  .home-intro h2 {font-size: 34px;}
+  .home-status-topic {display: none;}
+  .post-page #sidebar {position: static;}
+}
+@media (max-width: 820px) {
+  #wrap > .outer {grid-template-columns: minmax(0,1fr);}
+  #header {height: 88px !important;}
+  #header-title {top: 23px !important;}
+  #header-inner {top: 18px;}
+  #logo {font-size: 19px !important;}
+  .logo-suffix {font-size: 14px;}
+  #sidebar {display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: start;}
+  .post-page #sidebar {display: none;}
+  .freya-companion, #freya-show {display: none !important;}
+}
+@media (max-width: 600px) {
+  #header {height: 132px !important;}
+  #header-title {top: 22px !important; left: 0;}
+  #logo {font-size: 21px !important;}
+  #subtitle {font-size: 9px !important;}
+  #header-inner {top: 77px; left: 0; right: 0; justify-content: space-between;}
+  #main-nav {gap: 7px;}
+  .main-nav-link {display: block !important; height: 37px; padding: 8px 12px !important; margin: 0;}
+  #sub-nav {border: 0; margin: 0; padding: 0; gap: 5px;}
+  .nav-icon {width: 36px; height: 36px; padding: 8px !important;}
+  .outer {padding-left: 0; padding-right: 0;}
+  #wrap > .outer {padding-top: 24px;}
+  .home-dashboard {border-radius: 12px; margin-bottom: 28px;}
+  .home-intro {padding: 25px 22px 20px;}
+  .home-prompt {font-size: 8px; letter-spacing: .6px;}
+  .home-intro h2 {font-size: clamp(25px,7vw,33px); letter-spacing: -.4px;}
+  .home-summary {font-size: 13px; margin-top: 15px;}
+  .home-actions {margin-top: 20px; gap: 20px;}
+  .home-status {font-size: 10px; gap: 10px 17px; margin-top: 23px;}
+  .home-status span:last-child {width: auto;}
+  .section-heading h2 {font-size: 16px;}
+  .section-heading h2 span {display: none;}
+  .section-heading > a {font-size: 11px;}
+  .note-link {grid-template-columns: minmax(0,1fr) 18px; gap: 10px; padding: 20px;}
+  .note-index {display: none;}
+  .note-link time {display: inline;}
+  .note-link h3 {font-size: 18px;}
+  .note-summary {font-size: 12px;}
+  #sidebar {display: block;}
+  .article {padding: 24px 20px !important;}
+  .article-title, .article-title a {font-size: 24px !important;}
+  .article-entry {font-size: 15px !important;}
+}
+
 </style>
 
 <style>
@@ -1350,45 +1493,29 @@ body:has(#container.mobile-nav-on) #player-playlist {
 }
 </style>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
-<body>
+
+
+
+<body class="">
   <div id="container">
     <div id="wrap">
       <header id="header">
-  <div id="banner"></div>
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">TYBOYKALI&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">CTF / WEB SECURITY / NOTES</a>
-        </h2>
-      
+      <h1 id="logo-wrap"><a href="/" id="logo">TYBOYKALI<span class="logo-suffix"> / notes</span></a></h1>
+      <p id="subtitle-wrap"><span id="subtitle">CTF / WEB SECURITY / NOTES</span></p>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives/">归档</a>
-        
-          <a class="main-nav-link" href="/links/">友链</a>
-        
+    <div id="header-inner">
+      <nav id="main-nav" aria-label="主导航">
+        <a class="main-nav-link" href="/">首页</a><a class="main-nav-link" href="/archives/">归档</a><a class="main-nav-link" href="/links/">友链</a>
       </nav>
-      <nav id="sub-nav">
+      <nav id="sub-nav" aria-label="其他链接">
         
-          
-            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/TYBOYKALI"><span class="fa fa-github"></span></a>
-          
+          <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/TYBOYKALI" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.12.68-3.78-1.32-3.78-1.32-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.62 1.22 3.26.93.1-.73.4-1.22.71-1.5-2.49-.29-5.11-1.25-5.11-5.54 0-1.22.44-2.22 1.15-3-.11-.29-.5-1.42.11-2.97 0 0 .94-.3 3.08 1.15a10.73 10.73 0 0 1 5.6 0c2.14-1.45 3.07-1.15 3.07-1.15.61 1.55.23 2.68.12 2.97.71.78 1.15 1.78 1.15 3 0 4.3-2.63 5.25-5.13 5.53.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
         
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+        <button type="button" class="nav-icon nav-search-btn" aria-label="搜索文章" title="搜索文章"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
       </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tyboykali.github.io"></form>
-      </div>
+      <div id="search-form-wrap"><form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tyboykali.github.io"></form></div>
     </div>
   </div>
 </header>
@@ -1446,6 +1573,12 @@ body:has(#container.mobile-nav-on) #player-playlist {
 </section>
         
           <aside id="sidebar">
+  <section class="about-card" aria-label="关于博客">
+    <div class="about-mark" aria-hidden="true">✦</div>
+    <h2>TYBOYKALI</h2>
+    <p>在代码与问题之间探索。<br>这里收录 CTF 解题、Web 安全与日常学习笔记。</p>
+    <a target="_blank" rel="noopener" href="https://github.com/TYBOYKALI">GITHUB <span aria-hidden="true">↗</span></a>
+  </section>
   
     
   <div class="widget-wrap">
@@ -1491,6 +1624,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
     
   
 </aside>
+
         
       </div>
       <footer id="footer">
@@ -1505,16 +1639,17 @@ body:has(#container.mobile-nav-on) #player-playlist {
 </footer>
 
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives/" class="mobile-nav-link">归档</a>
-  
-    <a href="/links/" class="mobile-nav-link">友链</a>
-  
-</nav>
-    <canvas id="live2dCanvas"></canvas>
+
+    <div id="freya-companion" class="freya-companion" hidden>
+  <p class="freya-message" role="status" aria-live="polite" hidden></p>
+  <button class="freya-hide" type="button" aria-label="收起看板娘" title="收起看板娘">×</button>
+  <button class="freya-character" type="button" aria-label="点击打招呼，拖动或用方向键移动看板娘" title="点击打招呼 · 拖动换位置" data-sprite="/companion/freya.webp"><canvas width="192" height="208" aria-hidden="true"></canvas></button>
+</div>
+<button id="freya-show" type="button" hidden aria-label="显示看板娘">✦</button>
+
+
+
+
     
 
 
@@ -1534,137 +1669,11 @@ body:has(#container.mobile-nav-on) #player-playlist {
 
 
 
-<script>
-(function() {
-    var canvas = document.getElementById('live2dCanvas');
-    var app, model, coreModel;
-    var W = 390, H = 380;
 
-    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-    function lerp(a, b, t) { return a + (b - a) * t; }
 
-    var mouse = { x:0.5, y:0.5 };
-    var sm = { x:0.5, y:0.5 };
+<script src="/js/freya-companion.js"></script>
 
-    var blink = {
-        v: 1, timer: 0, next: 3, phase: 'open', elapsed: 0,
-        count: 0, target: 1
-    };
 
-    function schedBlink() {
-        blink.next = 2 + Math.random() * 5;
-        blink.timer = 0;
-        blink.target = Math.random() < 0.15 ? 2 : 1;
-        blink.count = 0;
-    }
-
-    function startBlink() {
-        blink.phase = 'closing';
-        blink.elapsed = 0;
-        blink.count++;
-    }
-
-    function updateBlink(dt) {
-        blink.timer += dt;
-        if (blink.phase === 'open' && blink.timer >= blink.next) {
-            startBlink();
-            return;
-        }
-        var ct = 0.06, ht = 0.05, ot = 0.12;
-        switch (blink.phase) {
-            case 'closing':
-                blink.elapsed += dt;
-                blink.v = 1 - blink.elapsed / ct;
-                if (blink.elapsed >= ct) { blink.v = 0; blink.phase = 'closed'; blink.elapsed = 0; }
-                break;
-            case 'closed':
-                blink.elapsed += dt;
-                if (blink.elapsed >= ht) { blink.phase = 'opening'; blink.elapsed = 0; }
-                break;
-            case 'opening':
-                blink.elapsed += dt;
-                blink.v = blink.elapsed / ot;
-                if (blink.elapsed >= ot) {
-                    blink.v = 1; blink.phase = 'open'; blink.elapsed = 0;
-                    if (blink.count < blink.target) { setTimeout(startBlink, 180); }
-                    else { schedBlink(); }
-                }
-                break;
-        }
-    }
-
-    function updateTracking(dt) {
-        sm.x = lerp(sm.x, mouse.x, dt * 8);
-        sm.y = lerp(sm.y, mouse.y, dt * 8);
-    }
-
-    function applyParams() {
-        if (!coreModel) return;
-        coreModel.setParameterValueById('ParamEyeLOpen', blink.v);
-        coreModel.setParameterValueById('ParamEyeROpen', blink.v);
-        var ex = clamp((sm.x - 0.5) * 2.2, -0.85, 0.85);
-        var ey = clamp((sm.y - 0.5) * 2.2, -0.70, 0.70);
-        coreModel.setParameterValueById('ParamEyeBallX', ex);
-        coreModel.setParameterValueById('ParamEyeBallY', ey);
-    }
-
-    function positionModel() {
-        if (!model) return;
-        model.scale.set(0.08);
-        model.x = W * 0.48;
-        model.y = H * 0.50;
-        model.anchor.set(0.5, 0.5);
-    }
-
-    async function loadModel(url) {
-        model = await PIXI.live2d.Live2DModel.from(url, { autoInteract: false });
-        coreModel = model.internalModel.coreModel;
-        app.stage.addChild(model);
-        positionModel();
-        console.log('Live2D ready!');
-    }
-
-    async function start() {
-        PIXI.live2d.Live2DModel.registerTicker(PIXI.Ticker);
-
-        var urls = ['/live2d/models/enterprise/aierdeliqi_5.model3.json'];
-        for (var i = 0; i < urls.length; i++) {
-            try { await loadModel(urls[i]); return; }
-            catch(e) { console.warn('Failed: ' + urls[i], e); }
-        }
-    }
-
-    app = new PIXI.Application({
-        view: canvas,
-        backgroundAlpha: 0,
-        antialias: true,
-        width: W, height: H,
-        resolution: 2,
-        autoDensity: true,
-    });
-
-    window.PIXI = PIXI;
-
-    window.addEventListener('mousemove', function(e) {
-        mouse.x = e.clientX / window.innerWidth;
-        mouse.y = e.clientY / window.innerHeight;
-    });
-
-    window.PIXI = PIXI;
-
-    schedBlink();
-    start();
-
-    app.ticker.add(function(delta) {
-        var dt = app.ticker.deltaMS / 1000;
-        updateBlink(dt);
-        updateTracking(dt);
-        applyParams();
-    });
-
-    window.PIXI = PIXI;
-})();
-</script>
 
   </div>
 <!-- hexo injector body_end start -->
@@ -1683,137 +1692,103 @@ body:has(#container.mobile-nav-on) #player-playlist {
   }
 })();
 </script>
-
-<div id="music-player" role="region" aria-label="音乐播放器">
-  <div class="player-row">
-    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
-    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
-    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
-  </div>
-  <div class="player-info" aria-live="polite">
-    <span class="player-title" id="player-title">NO TRACK</span>
-    <span class="player-time" id="player-time">00:00 / 00:00</span>
-  </div>
-  <div class="player-volume-wrap">
-    <span class="fa fa-volume-up" aria-hidden="true"></span>
-    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
-  </div>
-  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
-</div>
-<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
-
 <script>
-(function() {
-  var songs = [
-    { name: 'gta4', file: '/music/gta4.mp3' },
-    { name: 'try', file: '/music/try.mp3' },
-    { name: '可爱', file: '/music/可爱.mp3' },
-    { name: '打上火花', file: '/music/打上火花.mp3' },
-    { name: '谢谢', file: '/music/谢谢.mp3' },
-    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
-    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
-    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
-    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
-    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
-    { name: '鲜花', file: '/music/鲜花.mp4' }
-  ];
-
-  var audio = new Audio();
-  var current = 0;
-  var playing = false;
-  var elPlay = document.getElementById('btn-play');
-  var elTitle = document.getElementById('player-title');
-  var elTime = document.getElementById('player-time');
-  var elVolume = document.getElementById('player-volume');
-  var elPlaylist = document.getElementById('player-playlist');
-  var elBtnPlaylist = document.getElementById('btn-playlist');
-
-  audio.volume = 0.02;
-
-  function fmtTime(value) {
-    if (!value || isNaN(value)) return '00:00';
-    var minutes = Math.floor(value / 60);
-    var seconds = Math.floor(value % 60);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  }
-
-  function setPlayState(isPlaying) {
-    playing = isPlaying;
-    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
-    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
-    elPlay.setAttribute('title', playing ? '暂停' : '播放');
-    elPlay.setAttribute('aria-pressed', String(playing));
-  }
-
-  function load(index) {
-    current = index;
-    audio.src = songs[index].file;
-    elTitle.textContent = songs[index].name;
-    renderPlaylist();
-    if (playing) {
-      audio.play().catch(function() { setPlayState(false); });
-    }
-  }
-
-  function togglePlay() {
-    if (!audio.src) load(0);
-    if (audio.paused) {
-      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-    } else {
-      audio.pause();
-      setPlayState(false);
-    }
-  }
-
-  function next() { load((current + 1) % songs.length); }
-  function previous() { load((current - 1 + songs.length) % songs.length); }
-
-  function renderPlaylist() {
-    elPlaylist.innerHTML = songs.map(function(song, index) {
-      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
-    }).join('');
-  }
-
-  elPlay.addEventListener('click', togglePlay);
-  document.getElementById('btn-prev').addEventListener('click', previous);
-  document.getElementById('btn-next').addEventListener('click', next);
-
-  elVolume.addEventListener('input', function() {
-    audio.volume = this.value / 100;
+(function () {
+  var current = location.pathname;
+  document.querySelectorAll('.main-nav-link').forEach(function (link) {
+    var target = new URL(link.href).pathname;
+    if (target === '/' ? current === '/' || current.startsWith('/page/') : current.startsWith(target)) link.setAttribute('aria-current', 'page');
   });
-
-  elBtnPlaylist.addEventListener('click', function(event) {
-    event.stopPropagation();
-    var expanded = !elPlaylist.classList.contains('show');
-    elPlaylist.classList.toggle('show', expanded);
-    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
-  });
-
-  elPlaylist.addEventListener('click', function(event) {
-    var item = event.target.closest('.pl-item');
-    if (!item) return;
-    load(parseInt(item.getAttribute('data-idx'), 10));
-    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
-      elPlaylist.classList.remove('show');
-      elBtnPlaylist.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  audio.addEventListener('timeupdate', function() {
-    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
-  });
-  audio.addEventListener('ended', function() { next(); });
-  audio.addEventListener('pause', function() { setPlayState(false); });
-  audio.addEventListener('play', function() { setPlayState(true); });
-  audio.addEventListener('error', function() { setPlayState(false); });
-
-  renderPlaylist();
 })();
 </script>
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
+}
+</style>
 
 <script>
 (function() {
@@ -1860,7 +1835,9 @@ body:has(#container.mobile-nav-on) #player-playlist {
     tocList.appendChild(li);
   });
 
-  document.body.appendChild(toc);
+  var sidebar = document.querySelector('#sidebar');
+  if (!sidebar) return;
+  sidebar.prepend(toc);
 
   // 滚动高亮
   var tocLinks = tocList.querySelectorAll('a');
@@ -1869,7 +1846,7 @@ body:has(#container.mobile-nav-on) #player-playlist {
     var activeIdx = 0;
 
     headings.forEach(function(h, i) {
-      if (h.offsetTop <= scrollPos) {
+      if (h.getBoundingClientRect().top + window.scrollY <= scrollPos) {
         activeIdx = i;
       }
     });
@@ -2005,93 +1982,137 @@ body:has(#container.mobile-nav-on) #player-playlist {
 }
 </style>
 
+<div id="music-player" role="region" aria-label="音乐播放器">
+  <div class="player-row">
+    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
+    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
+    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
+  </div>
+  <div class="player-info" aria-live="polite">
+    <span class="player-title" id="player-title">NO TRACK</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap">
+    <span class="fa fa-volume-up" aria-hidden="true"></span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
+  </div>
+  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
+</div>
+<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
+
 <script>
 (function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
+    { name: '鲜花', file: '/music/鲜花.mp4' }
+  ];
 
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
 
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+  audio.volume = 0.02;
+
+  function fmtTime(value) {
+    if (!value || isNaN(value)) return '00:00';
+    var minutes = Math.floor(value / 60);
+    var seconds = Math.floor(value % 60);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function setPlayState(isPlaying) {
+    playing = isPlaying;
+    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
+    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
+    elPlay.setAttribute('title', playing ? '暂停' : '播放');
+    elPlay.setAttribute('aria-pressed', String(playing));
+  }
+
+  function load(index) {
+    current = index;
+    audio.src = songs[index].file;
+    elTitle.textContent = songs[index].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function() { setPlayState(false); });
     }
+  }
 
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
+  function togglePlay() {
+    if (!audio.src) load(0);
+    if (audio.paused) {
+      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+    } else {
+      audio.pause();
+      setPlayState(false);
     }
+  }
 
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
+  function next() { load((current + 1) % songs.length); }
+  function previous() { load((current - 1 + songs.length) % songs.length); }
 
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
+  function renderPlaylist() {
+    elPlaylist.innerHTML = songs.map(function(song, index) {
+      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
+    }).join('');
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', previous);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
   });
+
+  elBtnPlaylist.addEventListener('click', function(event) {
+    event.stopPropagation();
+    var expanded = !elPlaylist.classList.contains('show');
+    elPlaylist.classList.toggle('show', expanded);
+    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
+  });
+
+  elPlaylist.addEventListener('click', function(event) {
+    var item = event.target.closest('.pl-item');
+    if (!item) return;
+    load(parseInt(item.getAttribute('data-idx'), 10));
+    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+      elBtnPlaylist.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('pause', function() { setPlayState(false); });
+  audio.addEventListener('play', function() { setPlayState(true); });
+  audio.addEventListener('error', function() { setPlayState(false); });
+
+  renderPlaylist();
 })();
 </script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
-}
-</style>
 <!-- hexo injector body_end end --></body>
 </html>
+
+
