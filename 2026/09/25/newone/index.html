@@ -1730,6 +1730,15 @@ body:has(#container.mobile-nav-on) #player-playlist {
     
 <nav id="article-nav">
   
+    <a href="/2026/10/14/%E7%94%9F%E6%88%90%E5%99%A8%E6%A0%88%E5%B8%A7%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          生成器栈帧沙箱逃逸
+        
+      </div>
+    </a>
+  
   
     <a href="/2026/07/25/za-qi-za-ba/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
@@ -1759,6 +1768,10 @@ body:has(#container.mobile-nav-on) #player-playlist {
       <ul>
         
           <li>
+            <a href="/2026/10/14/%E7%94%9F%E6%88%90%E5%99%A8%E6%A0%88%E5%B8%A7%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/">生成器栈帧沙箱逃逸</a>
+          </li>
+        
+          <li>
             <a href="/2026/09/25/newone/">newone</a>
           </li>
         
@@ -1774,10 +1787,6 @@ body:has(#container.mobile-nav-on) #player-playlist {
             <a href="/2026/05/03/newibe-lazy-newbie/">newibe懒菜鸟</a>
           </li>
         
-          <li>
-            <a href="/2026/05/02/hello-world/">Hello World</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1787,13 +1796,20 @@ body:has(#container.mobile-nav-on) #player-playlist {
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">九月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">十月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">九月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
     </div>
   </div>
 
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/" style="font-size: 10px;">沙箱逃逸</a>
+    </div>
+  </div>
+
   
 </aside>
 
@@ -1849,6 +1865,95 @@ body:has(#container.mobile-nav-on) #player-playlist {
 
   </div>
 <!-- hexo injector body_end start -->
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
+}
+</style>
+
 <script>
 (function() {
   var articleTitle = document.querySelector('.article-title');
@@ -2193,95 +2298,6 @@ body:has(#container.mobile-nav-on) #player-playlist {
   .article-toc-sidebar {
     display: none;
   }
-}
-</style>
-
-<script>
-(function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
-
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
-
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
-    }
-
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
-    }
-
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
-
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
-  });
-})();
-</script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
 }
 </style>
 <!-- hexo injector body_end end --></body>
