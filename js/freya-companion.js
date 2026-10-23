@@ -88,7 +88,7 @@
     if (Date.now() < suppressClickUntil) { e.preventDefault(); return; }
     action = greetings++ % 2 ? 'jumping' : 'waving'; frame = 0;
     until = Date.now() + states[action].count * 160 * 2;
-    var lines = ['你好呀，一起看看今天的笔记吧。', '慢慢探索，每一步都有新的收获。', '阅读累了，也记得休息一下。'];
+    var lines = ['你好', '綾崎雫です。これからよろしくお願いします。', '阅读累了，也记得休息一下。'];
     message.textContent = lines[(greetings - 1) % lines.length]; message.hidden = false;
     clearTimeout(messageTimer);
     messageTimer = setTimeout(function () { message.hidden = true; }, 4000);
