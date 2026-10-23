@@ -11,12 +11,12 @@
   <meta charset="utf-8">
   
   
-  <title>easy_polluted 与 Ezzz_php 解题记录 | TYBOYKALI&#39;s Blog</title>
+  <title>123 | TYBOYKALI&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="easy_polluted12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667from flask import Flask, session, redirect, url_for,request,re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="easy_polluted 与 Ezzz_php 解题记录">
-<meta property="og:url" content="https://tyboykali.github.io/2026/10/23/easy-polluted-ezzz-php/index.html">
+<meta property="og:title" content="123">
+<meta property="og:url" content="https://tyboykali.github.io/2026/10/23/123/index.html">
 <meta property="og:site_name" content="TYBOYKALI&#39;s Blog">
 <meta property="og:description" content="easy_polluted12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667from flask import Flask, session, redirect, url_for,request,re">
 <meta property="og:locale" content="zh_CN">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://tyboykali.github.io/images/ctf-20261023-07.png">
 <meta property="og:image" content="https://tyboykali.github.io/images/ctf-20261023-08.png">
 <meta property="article:published_time" content="2026-10-23T12:30:00.000Z">
-<meta property="article:modified_time" content="2026-10-23T12:21:06.382Z">
+<meta property="article:modified_time" content="2026-10-23T12:31:46.243Z">
 <meta property="article:author" content="TYBOYKALI">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="Python">
@@ -1533,9 +1533,9 @@ body {font-family: var(--gk-reading) !important;}
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-easy-polluted-ezzz-php" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-123" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2026/10/23/easy-polluted-ezzz-php/" class="article-date">
+    <a href="/2026/10/23/123/" class="article-date">
   <time class="dt-published" datetime="2026-10-23T12:30:00.000Z" itemprop="datePublished">2026-10-23</time>
 </a>
     
@@ -1551,7 +1551,7 @@ body {font-family: var(--gk-reading) !important;}
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      easy_polluted 与 Ezzz_php 解题记录
+      123
     </h1>
   
 
@@ -1619,7 +1619,7 @@ body {font-family: var(--gk-reading) !important;}
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tyboykali.github.io/2026/10/23/easy-polluted-ezzz-php/" data-id="cuidTu6wHszoOQVQIX6gIn1FH" data-title="easy_polluted 与 Ezzz_php 解题记录" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://tyboykali.github.io/2026/10/23/123/" data-id="cuidCy_1c5BiNvzEO6ag84PSJ" data-title="123" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -1660,7 +1660,7 @@ body {font-family: var(--gk-reading) !important;}
       <ul>
         
           <li>
-            <a href="/2026/10/23/easy-polluted-ezzz-php/">easy_polluted 与 Ezzz_php 解题记录</a>
+            <a href="/2026/10/23/123/">123</a>
           </li>
         
           <li>
@@ -1757,95 +1757,6 @@ body {font-family: var(--gk-reading) !important;}
 
   </div>
 <!-- hexo injector body_end start -->
-<script>
-(function() {
-  document.querySelectorAll('figure.highlight').forEach(function(block) {
-    var codeNode = block.querySelector('.code pre');
-    if (!codeNode) return;
-
-    var button = document.createElement('button');
-    button.className = 'code-copy-btn';
-    button.type = 'button';
-    button.title = '复制代码';
-    button.setAttribute('aria-label', '复制代码');
-    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
-    block.appendChild(button);
-
-    function setState(state) {
-      var succeeded = state === 'copied';
-      button.classList.toggle('copied', succeeded);
-      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
-      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
-    }
-
-    function fallbackCopy(text) {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      var copied = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return copied;
-    }
-
-    button.addEventListener('click', function() {
-      var text = codeNode.textContent;
-      var operation = navigator.clipboard
-        ? navigator.clipboard.writeText(text).then(function() { return true; })
-        : Promise.resolve(fallbackCopy(text));
-
-      operation.then(function(copied) {
-        setState(copied ? 'copied' : 'failed');
-      }).catch(function() {
-        setState(fallbackCopy(text) ? 'copied' : 'failed');
-      }).finally(function() {
-        setTimeout(function() { setState('idle'); }, 1800);
-      });
-    });
-  });
-})();
-</script>
-<style>
-.code-copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  padding: 0;
-  background: rgba(13, 16, 18, 0.9);
-  border: 1px solid var(--gk-border);
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 11px;
-  opacity: 0.62;
-  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-}
-
-figure.highlight:hover .code-copy-btn,
-.code-copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.code-copy-btn:hover {
-  border-color: var(--gk-cyan);
-  color: var(--gk-cyan);
-}
-
-.code-copy-btn.copied {
-  border-color: var(--gk-green);
-  color: var(--gk-green);
-}
-</style>
-
 <div id="music-player" role="region" aria-label="音乐播放器">
   <div class="player-row">
     <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
@@ -1977,30 +1888,6 @@ figure.highlight:hover .code-copy-btn,
 })();
 </script>
 
-<script>
-(function() {
-  var articleTitle = document.querySelector('.article-title');
-  var firstHeading = document.querySelector('.article-entry > h1:first-child');
-  if (!articleTitle || !firstHeading) return;
-
-  var normalize = function(value) {
-    return value.replace(/\s+/g, '').toLowerCase();
-  };
-
-  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
-    firstHeading.hidden = true;
-  }
-})();
-</script>
-<script>
-(function () {
-  var current = location.pathname;
-  document.querySelectorAll('.main-nav-link').forEach(function (link) {
-    var target = new URL(link.href).pathname;
-    if (target === '/' ? current === '/' || current.startsWith('/page/') : current.startsWith(target)) link.setAttribute('aria-current', 'page');
-  });
-})();
-</script>
 <script>
 (function() {
   // 只在文章页面显示目录
@@ -2202,7 +2089,120 @@ figure.highlight:hover .code-copy-btn,
   }
 }
 </style>
-<!-- hexo injector body_end end --></body>
+
+<script>
+(function() {
+  document.querySelectorAll('figure.highlight').forEach(function(block) {
+    var codeNode = block.querySelector('.code pre');
+    if (!codeNode) return;
+
+    var button = document.createElement('button');
+    button.className = 'code-copy-btn';
+    button.type = 'button';
+    button.title = '复制代码';
+    button.setAttribute('aria-label', '复制代码');
+    button.innerHTML = '<span class="fa fa-copy" aria-hidden="true"></span>';
+    block.appendChild(button);
+
+    function setState(state) {
+      var succeeded = state === 'copied';
+      button.classList.toggle('copied', succeeded);
+      button.setAttribute('aria-label', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.setAttribute('title', succeeded ? '已复制' : state === 'failed' ? '复制失败' : '复制代码');
+      button.innerHTML = '<span class="fa fa-' + (succeeded ? 'check' : state === 'failed' ? 'times' : 'copy') + '" aria-hidden="true"></span>';
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    button.addEventListener('click', function() {
+      var text = codeNode.textContent;
+      var operation = navigator.clipboard
+        ? navigator.clipboard.writeText(text).then(function() { return true; })
+        : Promise.resolve(fallbackCopy(text));
+
+      operation.then(function(copied) {
+        setState(copied ? 'copied' : 'failed');
+      }).catch(function() {
+        setState(fallbackCopy(text) ? 'copied' : 'failed');
+      }).finally(function() {
+        setTimeout(function() { setState('idle'); }, 1800);
+      });
+    });
+  });
+})();
+</script>
+<style>
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  background: rgba(13, 16, 18, 0.9);
+  border: 1px solid var(--gk-border);
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.62;
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+figure.highlight:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--gk-cyan);
+  color: var(--gk-cyan);
+}
+
+.code-copy-btn.copied {
+  border-color: var(--gk-green);
+  color: var(--gk-green);
+}
+</style>
+
+<script>
+(function() {
+  var articleTitle = document.querySelector('.article-title');
+  var firstHeading = document.querySelector('.article-entry > h1:first-child');
+  if (!articleTitle || !firstHeading) return;
+
+  var normalize = function(value) {
+    return value.replace(/\s+/g, '').toLowerCase();
+  };
+
+  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
+    firstHeading.hidden = true;
+  }
+})();
+</script>
+<script>
+(function () {
+  var current = location.pathname;
+  document.querySelectorAll('.main-nav-link').forEach(function (link) {
+    var target = new URL(link.href).pathname;
+    if (target === '/' ? current === '/' || current.startsWith('/page/') : current.startsWith(target)) link.setAttribute('aria-current', 'page');
+  });
+})();
+</script><!-- hexo injector body_end end --></body>
 </html>
 
 
