@@ -52,201 +52,6 @@
 <link rel="stylesheet" href="/vendor/fork-awesome/css/fork-awesome.min.css">
 
 <!-- hexo injector head_end start -->
-<style>
-#music-player {
-  position: fixed;
-  bottom: 14px;
-  left: 14px;
-  z-index: 9997;
-  display: grid;
-  grid-template-columns: auto minmax(80px, 1fr) auto auto;
-  align-items: center;
-  gap: 8px;
-  width: min(336px, calc(100vw - 28px));
-  height: 50px;
-  padding: 6px 8px;
-  overflow: hidden;
-  background: rgba(14, 17, 19, 0.96);
-  border: 1px solid var(--gk-border);
-  border-radius: 4px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(12px);
-  font-family: var(--gk-mono);
-}
-
-.player-row {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.player-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 12px;
-  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
-}
-
-.player-btn:hover {
-  background: var(--gk-surface-raised);
-  border-color: var(--gk-border);
-  color: var(--gk-text-strong);
-}
-
-.player-btn.play-btn {
-  background: rgba(114, 212, 155, 0.08);
-  border-color: rgba(114, 212, 155, 0.22);
-  color: var(--gk-green);
-}
-
-.player-info {
-  min-width: 0;
-  overflow: hidden;
-}
-
-.player-title,
-.player-time {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.player-title {
-  color: var(--gk-text);
-  font-size: 11px;
-  line-height: 1.35;
-}
-
-.player-time {
-  margin-top: 2px;
-  color: var(--gk-muted);
-  font-size: 9px;
-  line-height: 1.2;
-}
-
-.player-volume-wrap {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--gk-muted);
-  font-size: 10px;
-}
-
-.player-volume {
-  width: 54px;
-  height: 3px;
-  margin: 0;
-  appearance: none;
-  background: var(--gk-border-strong);
-  border: 0;
-  border-radius: 0;
-  cursor: pointer;
-}
-
-.player-volume::-webkit-slider-thumb {
-  width: 9px;
-  height: 9px;
-  appearance: none;
-  background: var(--gk-cyan);
-  border: 0;
-  border-radius: 50%;
-}
-
-#player-playlist {
-  position: fixed;
-  bottom: 72px;
-  left: 14px;
-  z-index: 9999;
-  display: none;
-  width: min(336px, calc(100vw - 28px));
-  max-height: min(360px, calc(100vh - 100px));
-  overflow-y: auto;
-  padding: 6px;
-  background: rgba(14, 17, 19, 0.98);
-  border: 1px solid var(--gk-border);
-  border-radius: 4px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
-  backdrop-filter: blur(12px);
-  font-family: var(--gk-mono);
-}
-
-#player-playlist.show {
-  display: block;
-}
-
-body:has(#container.mobile-nav-on) #music-player,
-body:has(#container.mobile-nav-on) #player-playlist {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-}
-
-#player-playlist .pl-item {
-  overflow: hidden;
-  padding: 8px 10px;
-  border-left: 2px solid transparent;
-  color: var(--gk-muted);
-  cursor: pointer;
-  font-size: 10px;
-  line-height: 1.35;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#player-playlist .pl-item:hover {
-  background: var(--gk-surface-raised);
-  color: var(--gk-text);
-}
-
-#player-playlist .pl-item.active {
-  background: rgba(114, 212, 155, 0.06);
-  border-left-color: var(--gk-green);
-  color: var(--gk-green);
-}
-
-/* Compact vertical player; the playlist opens beside it. */
-#music-player {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: 12px;
-  width: 88px;
-  height: auto;
-  padding: 12px 8px;
-}
-#music-player .player-info {
-  order: -1;
-  width: 100%;
-  text-align: center;
-}
-#music-player .player-title {font-size: 10px;}
-#music-player .player-time {font-size: 8px; white-space: normal; line-height: 1.5;}
-#music-player .player-row {flex-direction: column; gap: 6px;}
-#music-player .player-btn {width: 32px; height: 32px;}
-#music-player .player-volume-wrap {display: flex; gap: 4px;}
-#music-player .player-volume {width: 46px;}
-#player-playlist {
-  bottom: 14px;
-  left: 112px;
-  width: min(280px, calc(100vw - 126px));
-  max-height: min(360px, calc(100vh - 28px));
-}
-@media (max-width: 600px) {
-  #music-player {left: 8px; bottom: 8px; width: 76px; gap: 8px; padding: 10px 6px;}
-  #player-playlist {left: 92px; bottom: 8px; width: calc(100vw - 100px);}
-}
-</style>
-
 <style id="geek-style">
 :root {
   --gk-bg: #111417;
@@ -1511,6 +1316,201 @@ body {font-family: var(--gk-reading) !important;}
 }
 
 </style>
+
+<style>
+#music-player {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 9997;
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  width: min(336px, calc(100vw - 28px));
+  height: 50px;
+  padding: 6px 8px;
+  overflow: hidden;
+  background: rgba(14, 17, 19, 0.96);
+  border: 1px solid var(--gk-border);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  font-family: var(--gk-mono);
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.player-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 12px;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.player-btn:hover {
+  background: var(--gk-surface-raised);
+  border-color: var(--gk-border);
+  color: var(--gk-text-strong);
+}
+
+.player-btn.play-btn {
+  background: rgba(114, 212, 155, 0.08);
+  border-color: rgba(114, 212, 155, 0.22);
+  color: var(--gk-green);
+}
+
+.player-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.player-title,
+.player-time {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-title {
+  color: var(--gk-text);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.player-time {
+  margin-top: 2px;
+  color: var(--gk-muted);
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.player-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gk-muted);
+  font-size: 10px;
+}
+
+.player-volume {
+  width: 54px;
+  height: 3px;
+  margin: 0;
+  appearance: none;
+  background: var(--gk-border-strong);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.player-volume::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  appearance: none;
+  background: var(--gk-cyan);
+  border: 0;
+  border-radius: 50%;
+}
+
+#player-playlist {
+  position: fixed;
+  bottom: 72px;
+  left: 14px;
+  z-index: 9999;
+  display: none;
+  width: min(336px, calc(100vw - 28px));
+  max-height: min(360px, calc(100vh - 100px));
+  overflow-y: auto;
+  padding: 6px;
+  background: rgba(14, 17, 19, 0.98);
+  border: 1px solid var(--gk-border);
+  border-radius: 4px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(12px);
+  font-family: var(--gk-mono);
+}
+
+#player-playlist.show {
+  display: block;
+}
+
+body:has(#container.mobile-nav-on) #music-player,
+body:has(#container.mobile-nav-on) #player-playlist {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+#player-playlist .pl-item {
+  overflow: hidden;
+  padding: 8px 10px;
+  border-left: 2px solid transparent;
+  color: var(--gk-muted);
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#player-playlist .pl-item:hover {
+  background: var(--gk-surface-raised);
+  color: var(--gk-text);
+}
+
+#player-playlist .pl-item.active {
+  background: rgba(114, 212, 155, 0.06);
+  border-left-color: var(--gk-green);
+  color: var(--gk-green);
+}
+
+/* Compact vertical player; the playlist opens beside it. */
+#music-player {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 12px;
+  width: 88px;
+  height: auto;
+  padding: 12px 8px;
+}
+#music-player .player-info {
+  order: -1;
+  width: 100%;
+  text-align: center;
+}
+#music-player .player-title {font-size: 10px;}
+#music-player .player-time {font-size: 8px; white-space: normal; line-height: 1.5;}
+#music-player .player-row {flex-direction: column; gap: 6px;}
+#music-player .player-btn {width: 32px; height: 32px;}
+#music-player .player-volume-wrap {display: flex; gap: 4px;}
+#music-player .player-volume {width: 46px;}
+#player-playlist {
+  bottom: 14px;
+  left: 112px;
+  width: min(280px, calc(100vw - 126px));
+  max-height: min(360px, calc(100vh - 28px));
+}
+@media (max-width: 600px) {
+  #music-player {left: 8px; bottom: 8px; width: 76px; gap: 8px; padding: 10px 6px;}
+  #player-playlist {left: 92px; bottom: 8px; width: calc(100vw - 100px);}
+}
+</style>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head>
 
 
@@ -1759,7 +1759,7 @@ waf2($_SERVER[&#39;QUERY_STRING&#39;]);
   <section class="about-card" aria-label="关于博客">
     <div class="about-mark" aria-hidden="true">✦</div>
     <h2>TYBOYKALI</h2>
-    <p>在代码与问题之间探索。<br>这里收录 CTF 解题、Web 安全与日常学习笔记。</p>
+    <p>学习<br>菜鸟小记</p>
     <a target="_blank" rel="noopener" href="https://github.com/TYBOYKALI">GITHUB <span aria-hidden="true">↗</span></a>
   </section>
   
@@ -1955,6 +1955,161 @@ figure.highlight:hover .code-copy-btn,
   color: var(--gk-green);
 }
 </style>
+
+<script>
+(function() {
+  var articleTitle = document.querySelector('.article-title');
+  var firstHeading = document.querySelector('.article-entry > h1:first-child');
+  if (!articleTitle || !firstHeading) return;
+
+  var normalize = function(value) {
+    return value.replace(/\s+/g, '').toLowerCase();
+  };
+
+  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
+    firstHeading.hidden = true;
+  }
+})();
+</script>
+<script>
+(function () {
+  var current = location.pathname;
+  document.querySelectorAll('.main-nav-link').forEach(function (link) {
+    var target = new URL(link.href).pathname;
+    if (target === '/' ? current === '/' || current.startsWith('/page/') : current.startsWith(target)) link.setAttribute('aria-current', 'page');
+  });
+})();
+</script>
+<div id="music-player" role="region" aria-label="音乐播放器">
+  <div class="player-row">
+    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
+    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
+    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
+  </div>
+  <div class="player-info" aria-live="polite">
+    <span class="player-title" id="player-title">NO TRACK</span>
+    <span class="player-time" id="player-time">00:00 / 00:00</span>
+  </div>
+  <div class="player-volume-wrap">
+    <span class="fa fa-volume-up" aria-hidden="true"></span>
+    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
+  </div>
+  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
+</div>
+<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
+
+<script>
+(function() {
+  var songs = [
+    { name: 'gta4', file: '/music/gta4.mp3' },
+    { name: 'try', file: '/music/try.mp3' },
+    { name: '可爱', file: '/music/可爱.mp3' },
+    { name: '打上火花', file: '/music/打上火花.mp3' },
+    { name: '谢谢', file: '/music/谢谢.mp3' },
+    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
+    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
+    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
+    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
+    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
+    { name: '鲜花', file: '/music/鲜花.mp4' }
+  ];
+
+  var audio = new Audio();
+  var current = 0;
+  var playing = false;
+  var elPlay = document.getElementById('btn-play');
+  var elTitle = document.getElementById('player-title');
+  var elTime = document.getElementById('player-time');
+  var elVolume = document.getElementById('player-volume');
+  var elPlaylist = document.getElementById('player-playlist');
+  var elBtnPlaylist = document.getElementById('btn-playlist');
+
+  audio.volume = 0.02;
+
+  function fmtTime(value) {
+    if (!value || isNaN(value)) return '00:00';
+    var minutes = Math.floor(value / 60);
+    var seconds = Math.floor(value % 60);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function setPlayState(isPlaying) {
+    playing = isPlaying;
+    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
+    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
+    elPlay.setAttribute('title', playing ? '暂停' : '播放');
+    elPlay.setAttribute('aria-pressed', String(playing));
+  }
+
+  function load(index) {
+    current = index;
+    audio.src = songs[index].file;
+    elTitle.textContent = songs[index].name;
+    renderPlaylist();
+    if (playing) {
+      audio.play().catch(function() { setPlayState(false); });
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) load(0);
+    if (audio.paused) {
+      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+    } else {
+      audio.pause();
+      setPlayState(false);
+    }
+  }
+
+  function next() { load((current + 1) % songs.length); }
+  function previous() { load((current - 1 + songs.length) % songs.length); }
+
+  function renderPlaylist() {
+    elPlaylist.innerHTML = songs.map(function(song, index) {
+      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
+    }).join('');
+  }
+
+  elPlay.addEventListener('click', togglePlay);
+  document.getElementById('btn-prev').addEventListener('click', previous);
+  document.getElementById('btn-next').addEventListener('click', next);
+
+  elVolume.addEventListener('input', function() {
+    audio.volume = this.value / 100;
+  });
+
+  elBtnPlaylist.addEventListener('click', function(event) {
+    event.stopPropagation();
+    var expanded = !elPlaylist.classList.contains('show');
+    elPlaylist.classList.toggle('show', expanded);
+    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
+  });
+
+  elPlaylist.addEventListener('click', function(event) {
+    var item = event.target.closest('.pl-item');
+    if (!item) return;
+    load(parseInt(item.getAttribute('data-idx'), 10));
+    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
+      elPlaylist.classList.remove('show');
+      elBtnPlaylist.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  audio.addEventListener('timeupdate', function() {
+    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
+  });
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('pause', function() { setPlayState(false); });
+  audio.addEventListener('play', function() { setPlayState(true); });
+  audio.addEventListener('error', function() { setPlayState(false); });
+
+  renderPlaylist();
+})();
+</script>
 
 <script>
 (function() {
@@ -2157,162 +2312,7 @@ figure.highlight:hover .code-copy-btn,
   }
 }
 </style>
-
-<div id="music-player" role="region" aria-label="音乐播放器">
-  <div class="player-row">
-    <button class="player-btn" id="btn-prev" type="button" title="上一首" aria-label="上一首"><span class="fa fa-step-backward" aria-hidden="true"></span></button>
-    <button class="player-btn play-btn" id="btn-play" type="button" title="播放" aria-label="播放" aria-pressed="false"><span class="fa fa-play" aria-hidden="true"></span></button>
-    <button class="player-btn" id="btn-next" type="button" title="下一首" aria-label="下一首"><span class="fa fa-step-forward" aria-hidden="true"></span></button>
-  </div>
-  <div class="player-info" aria-live="polite">
-    <span class="player-title" id="player-title">NO TRACK</span>
-    <span class="player-time" id="player-time">00:00 / 00:00</span>
-  </div>
-  <div class="player-volume-wrap">
-    <span class="fa fa-volume-up" aria-hidden="true"></span>
-    <input type="range" class="player-volume" id="player-volume" min="0" max="100" value="2" aria-label="音量">
-  </div>
-  <button class="player-btn" id="btn-playlist" type="button" title="播放列表" aria-label="播放列表" aria-expanded="false"><span class="fa fa-list-ul" aria-hidden="true"></span></button>
-</div>
-<div id="player-playlist" role="listbox" aria-label="播放列表"></div>
-
-<script>
-(function() {
-  var songs = [
-    { name: 'gta4', file: '/music/gta4.mp3' },
-    { name: 'try', file: '/music/try.mp3' },
-    { name: '可爱', file: '/music/可爱.mp3' },
-    { name: '打上火花', file: '/music/打上火花.mp3' },
-    { name: '谢谢', file: '/music/谢谢.mp3' },
-    { name: 'L_Youd _ Zerky - TempIe', file: '/music/L_Youd _ Zerky - TempIe (混音_Remix).ogg' },
-    { name: 'Virtual Riot - Purple Dragons', file: '/music/Virtual Riot - Purple Dragons (Dragons VIP).ogg' },
-    { name: 'All We Know (Virtual Riot Remix)', file: '/music/Virtual Riot _ The Chainsmokers _ Phoebe Ryan - All We Know (Virtual Riot Remix).ogg' },
-    { name: '昼夜 - 千与千寻', file: '/music/昼夜 - 千与千寻 (钢琴版).ogg' },
-    { name: 'lucky (氛围版)', file: '/music/等一会就睡 - 【FREE】lucky (氛围版).ogg' },
-    { name: '鲜花', file: '/music/鲜花.mp4' }
-  ];
-
-  var audio = new Audio();
-  var current = 0;
-  var playing = false;
-  var elPlay = document.getElementById('btn-play');
-  var elTitle = document.getElementById('player-title');
-  var elTime = document.getElementById('player-time');
-  var elVolume = document.getElementById('player-volume');
-  var elPlaylist = document.getElementById('player-playlist');
-  var elBtnPlaylist = document.getElementById('btn-playlist');
-
-  audio.volume = 0.02;
-
-  function fmtTime(value) {
-    if (!value || isNaN(value)) return '00:00';
-    var minutes = Math.floor(value / 60);
-    var seconds = Math.floor(value % 60);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  }
-
-  function setPlayState(isPlaying) {
-    playing = isPlaying;
-    elPlay.innerHTML = '<span class="fa fa-' + (playing ? 'pause' : 'play') + '" aria-hidden="true"></span>';
-    elPlay.setAttribute('aria-label', playing ? '暂停' : '播放');
-    elPlay.setAttribute('title', playing ? '暂停' : '播放');
-    elPlay.setAttribute('aria-pressed', String(playing));
-  }
-
-  function load(index) {
-    current = index;
-    audio.src = songs[index].file;
-    elTitle.textContent = songs[index].name;
-    renderPlaylist();
-    if (playing) {
-      audio.play().catch(function() { setPlayState(false); });
-    }
-  }
-
-  function togglePlay() {
-    if (!audio.src) load(0);
-    if (audio.paused) {
-      audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-    } else {
-      audio.pause();
-      setPlayState(false);
-    }
-  }
-
-  function next() { load((current + 1) % songs.length); }
-  function previous() { load((current - 1 + songs.length) % songs.length); }
-
-  function renderPlaylist() {
-    elPlaylist.innerHTML = songs.map(function(song, index) {
-      return '<div class="pl-item' + (index === current ? ' active' : '') + '" role="option" aria-selected="' + (index === current) + '" data-idx="' + index + '">' + song.name + '</div>';
-    }).join('');
-  }
-
-  elPlay.addEventListener('click', togglePlay);
-  document.getElementById('btn-prev').addEventListener('click', previous);
-  document.getElementById('btn-next').addEventListener('click', next);
-
-  elVolume.addEventListener('input', function() {
-    audio.volume = this.value / 100;
-  });
-
-  elBtnPlaylist.addEventListener('click', function(event) {
-    event.stopPropagation();
-    var expanded = !elPlaylist.classList.contains('show');
-    elPlaylist.classList.toggle('show', expanded);
-    elBtnPlaylist.setAttribute('aria-expanded', String(expanded));
-  });
-
-  elPlaylist.addEventListener('click', function(event) {
-    var item = event.target.closest('.pl-item');
-    if (!item) return;
-    load(parseInt(item.getAttribute('data-idx'), 10));
-    audio.play().then(function() { setPlayState(true); }).catch(function() { setPlayState(false); });
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!elPlaylist.contains(event.target) && event.target !== elBtnPlaylist) {
-      elPlaylist.classList.remove('show');
-      elBtnPlaylist.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  audio.addEventListener('timeupdate', function() {
-    elTime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration || 0);
-  });
-  audio.addEventListener('ended', function() { next(); });
-  audio.addEventListener('pause', function() { setPlayState(false); });
-  audio.addEventListener('play', function() { setPlayState(true); });
-  audio.addEventListener('error', function() { setPlayState(false); });
-
-  renderPlaylist();
-})();
-</script>
-
-<script>
-(function() {
-  var articleTitle = document.querySelector('.article-title');
-  var firstHeading = document.querySelector('.article-entry > h1:first-child');
-  if (!articleTitle || !firstHeading) return;
-
-  var normalize = function(value) {
-    return value.replace(/\s+/g, '').toLowerCase();
-  };
-
-  if (normalize(articleTitle.textContent) === normalize(firstHeading.textContent)) {
-    firstHeading.hidden = true;
-  }
-})();
-</script>
-<script>
-(function () {
-  var current = location.pathname;
-  document.querySelectorAll('.main-nav-link').forEach(function (link) {
-    var target = new URL(link.href).pathname;
-    if (target === '/' ? current === '/' || current.startsWith('/page/') : current.startsWith(target)) link.setAttribute('aria-current', 'page');
-  });
-})();
-</script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end end --></body>
 </html>
 
 
