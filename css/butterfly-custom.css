@@ -32,3 +32,8 @@ html[data-theme="dark"] #recent-posts > .recent-post-items > .recent-post-item,
 html[data-theme="dark"] #post,
 html[data-theme="dark"] #page,
 html[data-theme="dark"] #archive { background: #292a2d; }
+
+/* 与页面文字一致，代码更易阅读，选中文本使用蓝色。 */
+html[data-theme="dark"] figure.highlight pre,
+html[data-theme="dark"] pre > code { font-size: 16px; line-height: 1.7; }
+html[data-theme="dark"] ::selection { background: #315f9f !important; color: #ffffff !important; }
