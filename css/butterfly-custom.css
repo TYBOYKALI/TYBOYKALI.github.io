@@ -10,6 +10,9 @@ html[data-theme="dark"] {
   --toc-link-color: #ffffff;
   --btn-color: #ffffff;
   --a-link-color: #ffffff;
+  --hl-bg: #303135;
+  --hltools-bg: #303135;
+  --hlnumber-bg: #303135;
 }
 html[data-theme="dark"] #page-header { background-color: #2862a1; }
 html[data-theme="dark"] #page-header:not(.not-top-img):before,
@@ -25,7 +28,7 @@ html[data-theme="dark"] textarea::placeholder { color: #ffffff; opacity: 1; }
 html[data-theme="dark"] .tag-cloud-list > a { filter: none; }
 html[data-theme="dark"] .highlight,
 html[data-theme="dark"] pre,
-html[data-theme="dark"] code { background-color: #1c1d20; }
+html[data-theme="dark"] code { background-color: #303135; }
 
 /* 首页、文章和归档使用相同的背景层次。 */
 html[data-theme="dark"] #recent-posts > .recent-post-items > .recent-post-item,
@@ -37,3 +40,7 @@ html[data-theme="dark"] #archive { background: #292a2d; }
 html[data-theme="dark"] figure.highlight pre,
 html[data-theme="dark"] pre > code { font-size: 16px; line-height: 1.7; }
 html[data-theme="dark"] ::selection { background: #315f9f !important; color: #ffffff !important; }
+
+/* 正文和页面融为一体，代码框与底色只保留轻微区分。 */
+html[data-theme="dark"] #post { background: #242528; box-shadow: none; }
+html[data-theme="dark"] #aside-content .card-toc .toc-link.active { background: #315f9f; }
