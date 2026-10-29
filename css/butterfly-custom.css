@@ -11,11 +11,11 @@ html[data-theme="dark"] {
   --btn-color: #ffffff;
   --a-link-color: #ffffff;
 }
-html[data-theme="dark"] #page-header { background-color: #1c477d; }
+html[data-theme="dark"] #page-header { background-color: #2862a1; }
 html[data-theme="dark"] #page-header:not(.not-top-img):before,
 html[data-theme="dark"] #footer:before { background-color: transparent; }
 html[data-theme="dark"] #page-header.nav-fixed > #nav,
-html[data-theme="dark"] #page-header.not-top-img > #nav { background: #1c477d; }
+html[data-theme="dark"] #page-header.not-top-img > #nav { background: #2862a1; }
 html[data-theme="dark"] #aside-content .card-widget,
 html[data-theme="dark"] #sidebar #sidebar-menus { background: #424348; }
 html[data-theme="dark"] body,
@@ -26,3 +26,9 @@ html[data-theme="dark"] .tag-cloud-list > a { filter: none; }
 html[data-theme="dark"] .highlight,
 html[data-theme="dark"] pre,
 html[data-theme="dark"] code { background-color: #1c1d20; }
+
+/* 首页、文章和归档使用相同的背景层次。 */
+html[data-theme="dark"] #recent-posts > .recent-post-items > .recent-post-item,
+html[data-theme="dark"] #post,
+html[data-theme="dark"] #page,
+html[data-theme="dark"] #archive { background: #292a2d; }
