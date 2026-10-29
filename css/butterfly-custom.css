@@ -44,3 +44,17 @@ html[data-theme="dark"] ::selection { background: #315f9f !important; color: #ff
 /* 正文和页面融为一体，代码框与底色只保留轻微区分。 */
 html[data-theme="dark"] #post { background: #242528; box-shadow: none; }
 html[data-theme="dark"] #aside-content #card-toc .toc-content .toc-link.active { background: #315f9f !important; }
+
+/* 正文字号与代码块协调，播放器与页面灰色层次一致。 */
+html[data-theme="dark"] #article-container { font-size: 17px; line-height: 1.85; }
+html[data-theme="dark"] #music-player,
+html[data-theme="dark"] #player-playlist {
+  background: linear-gradient(155deg, #4b4d52, #35373b) !important;
+  border: 1px solid #71747b !important;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .13) !important;
+}
+html[data-theme="dark"] #music-player .player-btn:hover,
+html[data-theme="dark"] #player-playlist .pl-item:hover { background: #5a606a; border-color: #858b94; }
+html[data-theme="dark"] #music-player .player-btn.play-btn { background: #486586; border-color: #83a5ca; }
+html[data-theme="dark"] #player-playlist .pl-item.active { background: #486586; border-left-color: #a5c9f1; }
