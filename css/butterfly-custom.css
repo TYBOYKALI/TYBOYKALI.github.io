@@ -1,10 +1,28 @@
+/* 深灰正文、灰色侧栏与蓝色顶部，统一白色文字。 */
 html[data-theme="dark"] {
-  --global-bg: #292b2f;
-  --card-bg: #41444a;
-  --font-color: #e8e9eb;
-  --text-highlight-color: #fafafa;
-  --light-grey: #aeb1b6;
+  --global-bg: #242528;
+  --card-bg: #292a2d;
+  --font-color: #ffffff;
+  --text-highlight-color: #ffffff;
+  --light-grey: #ffffff;
+  --white: #ffffff;
+  --blockquote-color: #ffffff;
+  --toc-link-color: #ffffff;
+  --btn-color: #ffffff;
+  --a-link-color: #ffffff;
 }
+html[data-theme="dark"] #page-header { background-color: #1c477d; }
 html[data-theme="dark"] #page-header:not(.not-top-img):before,
-html[data-theme="dark"] #footer:before { background-color: rgba(18, 30, 42, .28); }
-html[data-theme="dark"] { --theme-color: #69b7ed; --a-link-color: #75c2f3; }
+html[data-theme="dark"] #footer:before { background-color: transparent; }
+html[data-theme="dark"] #page-header.nav-fixed > #nav,
+html[data-theme="dark"] #page-header.not-top-img > #nav { background: #1c477d; }
+html[data-theme="dark"] #aside-content .card-widget,
+html[data-theme="dark"] #sidebar #sidebar-menus { background: #424348; }
+html[data-theme="dark"] body,
+html[data-theme="dark"] body :not(svg):not(path) { color: #ffffff !important; }
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #ffffff; opacity: 1; }
+html[data-theme="dark"] .tag-cloud-list > a { filter: none; }
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] pre,
+html[data-theme="dark"] code { background-color: #1c1d20; }
