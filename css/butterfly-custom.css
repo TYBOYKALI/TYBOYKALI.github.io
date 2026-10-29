@@ -14,11 +14,11 @@ html[data-theme="dark"] {
   --hltools-bg: #303135;
   --hlnumber-bg: #303135;
 }
-html[data-theme="dark"] #page-header { background-color: #2862a1; }
+html[data-theme="dark"] #page-header { background-color: #168fc6; }
 html[data-theme="dark"] #page-header:not(.not-top-img):before,
 html[data-theme="dark"] #footer:before { background-color: transparent; }
 html[data-theme="dark"] #page-header.nav-fixed > #nav,
-html[data-theme="dark"] #page-header.not-top-img > #nav { background: #2862a1; }
+html[data-theme="dark"] #page-header.not-top-img > #nav { background: #168fc6; }
 html[data-theme="dark"] #aside-content .card-widget,
 html[data-theme="dark"] #sidebar #sidebar-menus { background: #424348; }
 html[data-theme="dark"] body,
@@ -60,6 +60,7 @@ html[data-theme="dark"] #music-player .player-btn.play-btn { background: #486586
 html[data-theme="dark"] #player-playlist .pl-item.active { background: #486586; border-left-color: #a5c9f1; }
 
 /* 首页蓝色取自头像背景。 */
-html[data-theme="dark"] #page-header.full_page { background-color: #23bdfd; }
-html[data-theme="dark"] #page-header.full_page #site-title,
-html[data-theme="dark"] #page-header.full_page #nav { text-shadow: 0 2px 5px rgba(0, 45, 82, .6); }
+html[data-theme="dark"] #page-header.full_page { background-color: #168fc6; }
+html[data-theme="dark"] #page-header #site-title,
+html[data-theme="dark"] #page-header #post-info,
+html[data-theme="dark"] #page-header #nav { text-shadow: 0 2px 5px rgba(0, 45, 82, .6); }
