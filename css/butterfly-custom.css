@@ -43,4 +43,4 @@ html[data-theme="dark"] ::selection { background: #315f9f !important; color: #ff
 
 /* 正文和页面融为一体，代码框与底色只保留轻微区分。 */
 html[data-theme="dark"] #post { background: #242528; box-shadow: none; }
-html[data-theme="dark"] #aside-content .card-toc .toc-link.active { background: #315f9f; }
+html[data-theme="dark"] #aside-content #card-toc .toc-content .toc-link.active { background: #315f9f !important; }
