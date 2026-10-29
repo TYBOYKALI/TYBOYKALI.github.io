@@ -1,21 +1,21 @@
-.freya-companion {position: fixed; right: 16px; bottom: 15px; width: 176px; z-index: 10001; text-align: center;}
-.freya-character {display: block; padding: 0; width: 176px; height: 191px; border: 0; background: none; cursor: grab; touch-action: none; user-select: none; border-radius: 12px;}
-.freya-character canvas {display: block; width: 176px; height: 191px;}
+.freya-companion {position: fixed; right: 16px; bottom: 15px; width: 132px; z-index: 10001; text-align: center;}
+.freya-character {display: block; padding: 0; width: 132px; height: 143px; border: 0; background: none; cursor: grab; touch-action: none; user-select: none; border-radius: 12px;}
+.freya-character canvas {display: block; width: 132px; height: 143px;}
 
 
 .freya-hide {position: absolute; right: 0; top: 0; width: 28px; height: 28px; border: 1px solid #60758a; border-radius: 50%; background: #34475b; color: #d7e1eb; cursor: pointer; font-size: 17px;}
-.freya-message {position: absolute; right: 5px; bottom: 220px; width: 218px; margin: 0; background: #202b3c; color: #f0f2f3; padding: 13px 16px; border: 1px solid #516783; border-radius: 12px 12px 2px 12px; font-size: 12px; text-align: left; line-height: 1.8; box-shadow: 0 8px 30px #0004;}
+.freya-message {position: absolute; right: 5px; bottom: calc(100% + 12px); width: 218px; margin: 0; background: #202b3c; color: #f0f2f3; padding: 13px 16px; border: 1px solid #516783; border-radius: 12px 12px 2px 12px; font-size: 12px; text-align: left; line-height: 1.8; box-shadow: 0 8px 30px #0004;}
 #freya-show {position: fixed; right: 20px; bottom: 20px; z-index: 10001; border: 1px solid #60758a; border-radius: 20px; padding: 9px 15px; background: #34475b; color: #f2ce8c; cursor: pointer; font-size: 12px;}
 .freya-companion.is-dragging .freya-character {cursor: grabbing;}
-.freya-companion.message-below .freya-message {bottom: auto; top: 205px;}
+.freya-companion.message-below .freya-message {bottom: auto; top: calc(100% + 12px);}
 .freya-companion.message-align-left .freya-message {right: auto; left: 5px;}
 [hidden] {display: none !important;}
 
 @media (max-width: 820px) {
-  .freya-companion { right: 8px; bottom: 52px; width: 112px; }
-  .freya-character, .freya-character canvas { width: 112px; height: 121px; }
-  .freya-message { bottom: 140px; width: 190px; }
-  .freya-companion.message-below .freya-message { top: 130px; }
+  .freya-companion { right: 8px; bottom: 52px; width: 90px; }
+  .freya-character, .freya-character canvas { width: 90px; height: 98px; }
+  .freya-message { bottom: calc(100% + 12px); width: 190px; }
+  .freya-companion.message-below .freya-message { top: calc(100% + 12px); }
   #freya-show { bottom: 55px; }
 }
 
