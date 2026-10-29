@@ -18,3 +18,6 @@
   .freya-companion.message-below .freya-message { top: 130px; }
   #freya-show { bottom: 55px; }
 }
+
+#freya-show { cursor: grab; touch-action: none; user-select: none; }
+#freya-show.is-dragging { cursor: grabbing; }

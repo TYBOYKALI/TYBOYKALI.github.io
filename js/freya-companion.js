@@ -14,11 +14,14 @@
   var ready = false, loading = false, collapsed = false;
   var timer, messageTimer, frame = 0, action = 'idle', until = 0, greetings = 0;
   var target = null, position = null, drag = null, suppressClickUntil = 0;
+  var reopenPosition = null, reopenDrag = null;
   var states = { idle: {row: 0, count: 6}, waving: {row: 3, count: 4}, jumping: {row: 4, count: 5} };
   try {
     collapsed = localStorage.getItem('freya-collapsed') === '1';
     var saved = JSON.parse(localStorage.getItem('freya-position'));
     if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) position = {x: clamp(saved.x, 0, 1), y: clamp(saved.y, 0, 1)};
+    var savedReopen = JSON.parse(localStorage.getItem('freya-reopen-position'));
+    if (savedReopen && Number.isFinite(savedReopen.x) && Number.isFinite(savedReopen.y)) reopenPosition = {x: clamp(savedReopen.x, 0, 1), y: clamp(savedReopen.y, 0, 1)};
   } catch (_) {}
 
   function clamp(value, low, high) { return Math.max(low, Math.min(high, value)); }
@@ -41,6 +44,23 @@
   }
   function savePosition() {
     try { localStorage.setItem('freya-position', JSON.stringify(position)); } catch (_) {}
+  }
+  function setReopenPosition(x, y) {
+    var maxX = Math.max(8, innerWidth - reopen.offsetWidth - 8);
+    var maxY = Math.max(8, innerHeight - reopen.offsetHeight - 8);
+    var left = clamp(x, 8, maxX), top = clamp(y, 8, maxY);
+    reopen.style.right = 'auto'; reopen.style.bottom = 'auto';
+    reopen.style.left = left + 'px'; reopen.style.top = top + 'px';
+    reopenPosition = {x: (left - 8) / Math.max(1, maxX - 8), y: (top - 8) / Math.max(1, maxY - 8)};
+  }
+  function restoreReopenPosition() {
+    if (!reopenPosition || reopen.hidden) return;
+    var maxX = Math.max(8, innerWidth - reopen.offsetWidth - 8);
+    var maxY = Math.max(8, innerHeight - reopen.offsetHeight - 8);
+    setReopenPosition(8 + reopenPosition.x * (maxX - 8), 8 + reopenPosition.y * (maxY - 8));
+  }
+  function saveReopenPosition() {
+    try { localStorage.setItem('freya-reopen-position', JSON.stringify(reopenPosition)); } catch (_) {}
   }
   function placeMessage() {
     if (panel.hidden) return;
@@ -75,6 +95,7 @@
     panel.hidden = !ready || !desktop.matches || collapsed;
     reopen.hidden = !ready || !desktop.matches || !collapsed;
     if (desktop.matches && !loading) { loading = true; atlas.src = character.dataset.sprite; }
+    if (!reopen.hidden) restoreReopenPosition();
     if (!panel.hidden && !document.hidden) { restorePosition(); placeMessage(); tick(); }
   }
   function setCollapsed(value) {
@@ -95,7 +116,41 @@
     sync();
   });
   panel.querySelector('.freya-hide').addEventListener('click', function () { setCollapsed(true); reopen.focus(); });
-  reopen.addEventListener('click', function () { setCollapsed(false); character.focus({preventScroll: true}); });
+  reopen.addEventListener('click', function (e) {
+    if (Date.now() < suppressClickUntil) { e.preventDefault(); return; }
+    setCollapsed(false); character.focus({preventScroll: true});
+  });
+  reopen.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || !e.isPrimary || reopen.hidden) return;
+    var box = reopen.getBoundingClientRect();
+    reopenDrag = {id: e.pointerId, x: e.clientX, y: e.clientY, left: box.left, top: box.top, moved: false};
+    reopen.setPointerCapture(e.pointerId);
+  });
+  reopen.addEventListener('pointermove', function (e) {
+    if (!reopenDrag || e.pointerId !== reopenDrag.id) return;
+    var dx = e.clientX - reopenDrag.x, dy = e.clientY - reopenDrag.y;
+    if (!reopenDrag.moved && Math.hypot(dx, dy) < 6) return;
+    reopenDrag.moved = true; reopen.classList.add('is-dragging');
+    setReopenPosition(reopenDrag.left + dx, reopenDrag.top + dy);
+  });
+  function finishReopenDrag(e) {
+    if (!reopenDrag || e.pointerId !== reopenDrag.id) return;
+    if (reopenDrag.moved) { suppressClickUntil = Date.now() + 350; saveReopenPosition(); }
+    var pointerId = reopenDrag.id;
+    reopenDrag = null; reopen.classList.remove('is-dragging');
+    if (reopen.hasPointerCapture(pointerId)) reopen.releasePointerCapture(pointerId);
+  }
+  reopen.addEventListener('pointerup', finishReopenDrag);
+  reopen.addEventListener('pointercancel', finishReopenDrag);
+  reopen.addEventListener('lostpointercapture', finishReopenDrag);
+  reopen.addEventListener('keydown', function (e) {
+    var offsets = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
+    if (!offsets[e.key]) return;
+    e.preventDefault();
+    var box = reopen.getBoundingClientRect(), step = e.shiftKey ? 5 : 20;
+    setReopenPosition(box.left + offsets[e.key][0] * step, box.top + offsets[e.key][1] * step);
+    saveReopenPosition();
+  });
   document.addEventListener('click', function (e) {
     if (!ready || collapsed || !desktop.matches || panel.contains(e.target) || reopen.contains(e.target) || Date.now() < suppressClickUntil) return;
     // Keyboard activation has no meaningful pointer coordinates.
@@ -137,7 +192,7 @@
     setPosition(box.left + offsets[e.key][0] * step, box.top + offsets[e.key][1] * step);
     savePosition();
   });
-  window.addEventListener('resize', function () { restorePosition(); placeMessage(); render(); });
+  window.addEventListener('resize', function () { restorePosition(); restoreReopenPosition(); placeMessage(); render(); });
   window.addEventListener('scroll', render, {passive: true});
   desktop.addEventListener('change', sync);
   reduceMotion.addEventListener('change', sync);
