@@ -39,11 +39,11 @@ html[data-theme="dark"] #archive { background: #292a2d; }
 /* 与页面文字一致，代码更易阅读，选中文本使用蓝色。 */
 html[data-theme="dark"] figure.highlight pre,
 html[data-theme="dark"] pre > code { font-size: 16px; line-height: 1.7; }
-html[data-theme="dark"] ::selection { background: #315f9f !important; color: #ffffff !important; }
+html[data-theme="dark"] ::selection { background: #168fc6 !important; color: #ffffff !important; }
 
 /* 正文和页面融为一体，代码框与底色只保留轻微区分。 */
 html[data-theme="dark"] #post { background: #242528; box-shadow: none; }
-html[data-theme="dark"] #aside-content #card-toc .toc-content .toc-link.active { background: #315f9f !important; }
+html[data-theme="dark"] #aside-content #card-toc .toc-content .toc-link.active { background: #168fc6 !important; }
 
 /* 正文字号与代码块协调，播放器与页面灰色层次一致。 */
 html[data-theme="dark"] #article-container { font-size: 17px; line-height: 1.85; }
@@ -56,8 +56,8 @@ html[data-theme="dark"] #player-playlist {
 }
 html[data-theme="dark"] #music-player .player-btn:hover,
 html[data-theme="dark"] #player-playlist .pl-item:hover { background: #5a606a; border-color: #858b94; }
-html[data-theme="dark"] #music-player .player-btn.play-btn { background: #486586; border-color: #83a5ca; }
-html[data-theme="dark"] #player-playlist .pl-item.active { background: #486586; border-left-color: #a5c9f1; }
+html[data-theme="dark"] #music-player .player-btn.play-btn { background: #168fc6; border-color: #168fc6; }
+html[data-theme="dark"] #player-playlist .pl-item.active { background: #168fc6; border-left-color: #168fc6; }
 
 /* 首页蓝色取自头像背景。 */
 html[data-theme="dark"] #page-header.full_page { background-color: #168fc6; }
