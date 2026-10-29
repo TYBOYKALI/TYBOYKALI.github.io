@@ -1,0 +1,10 @@
+html[data-theme="dark"] {
+  --global-bg: #292b2f;
+  --card-bg: #41444a;
+  --font-color: #e8e9eb;
+  --text-highlight-color: #fafafa;
+  --light-grey: #aeb1b6;
+}
+html[data-theme="dark"] #page-header:not(.not-top-img):before,
+html[data-theme="dark"] #footer:before { background-color: rgba(18, 30, 42, .28); }
+html[data-theme="dark"] { --theme-color: #69b7ed; --a-link-color: #75c2f3; }

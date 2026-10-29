@@ -9,7 +9,7 @@
   if (!ctx) return;
   var message = panel.querySelector('.freya-message');
   var atlas = new Image();
-  var desktop = window.matchMedia('(min-width: 821px)');
+  var desktop = window.matchMedia('(min-width: 0px)');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var ready = false, loading = false, collapsed = false;
   var timer, messageTimer, frame = 0, action = 'idle', until = 0, greetings = 0;
