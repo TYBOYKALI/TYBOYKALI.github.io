@@ -64,3 +64,7 @@ html[data-theme="dark"] #page-header.full_page { background-color: #168fc6; }
 html[data-theme="dark"] #page-header #site-title,
 html[data-theme="dark"] #page-header #post-info,
 html[data-theme="dark"] #page-header #nav { text-shadow: 0 2px 5px rgba(0, 45, 82, .6); }
+
+/* 头像卡片和移动菜单仅显示文章入口。 */
+#aside-content .card-info .site-data a:nth-child(n+2),
+#sidebar-menus .site-data a:nth-child(n+2) { display: none; }
