@@ -58,3 +58,8 @@ html[data-theme="dark"] #music-player .player-btn:hover,
 html[data-theme="dark"] #player-playlist .pl-item:hover { background: #5a606a; border-color: #858b94; }
 html[data-theme="dark"] #music-player .player-btn.play-btn { background: #486586; border-color: #83a5ca; }
 html[data-theme="dark"] #player-playlist .pl-item.active { background: #486586; border-left-color: #a5c9f1; }
+
+/* 首页蓝色取自头像背景。 */
+html[data-theme="dark"] #page-header.full_page { background-color: #23bdfd; }
+html[data-theme="dark"] #page-header.full_page #site-title,
+html[data-theme="dark"] #page-header.full_page #nav { text-shadow: 0 2px 5px rgba(0, 45, 82, .6); }
