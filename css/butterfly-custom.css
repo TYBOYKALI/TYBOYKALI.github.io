@@ -68,3 +68,7 @@ html[data-theme="dark"] #page-header #nav { text-shadow: 0 2px 5px rgba(0, 45, 8
 /* 头像卡片和移动菜单仅显示文章入口。 */
 #aside-content .card-info .site-data a:nth-child(n+2),
 #sidebar-menus .site-data a:nth-child(n+2) { display: none; }
+
+/* 纯色文章卡片不叠加主题默认的深色透明遮罩。 */
+html[data-theme="dark"] .pagination-related > div.cover { opacity: 1; }
+html[data-theme="dark"] .pagination-related:hover > div.cover { opacity: 1; }
