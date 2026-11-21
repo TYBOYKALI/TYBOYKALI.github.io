@@ -279,7 +279,8 @@
   height: 28px;
   margin: 0;
   appearance: none;
-  background: linear-gradient(var(--gk-border-strong), var(--gk-border-strong)) center / 100% 3px no-repeat;
+  --player-volume-track: color-mix(in srgb, var(--gk-border-strong, #a0a6b1) 40%, transparent);
+  background: linear-gradient(var(--player-volume-track), var(--player-volume-track)) center / 100% 3px no-repeat;
   border: 0;
   border-radius: 0;
   cursor: pointer;
@@ -289,7 +290,7 @@
   width: 9px;
   height: 9px;
   appearance: none;
-  background: var(--gk-cyan);
+  background: var(--gk-cyan, #a9c7f0);
   border: 0;
   border-radius: 50%;
 }
